@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     @BindView(R.id.rv_science_canteen)
     RecyclerView rvScienceCanteen;
@@ -38,7 +38,12 @@ public class MainActivityFragment extends Fragment {
 
     private ShopViewHolder.ControllerShopItem mControllerShopItem;
 
-    public MainActivityFragment() {
+    public static Fragment newInstance(){
+        HomeFragment fragment = new HomeFragment();
+        return fragment;
+    }
+
+    public HomeFragment() {
     }
 
     @Override
@@ -64,7 +69,7 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
 
         ShopAdapter scienceAdapter = new ShopAdapter(mScienceShopList, mControllerShopItem);

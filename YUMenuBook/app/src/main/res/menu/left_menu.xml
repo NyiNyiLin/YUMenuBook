@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_home"
+            android:title="@string/menu_home"
+            android:checked="true"/>
+
+        <item
+            android:id="@+id/menu_favourite"
+            android:title="@string/menu_favourite"/>
+
+        <item
+            android:id="@+id/menu_record"
+            android:title="@string/menu_record"/>
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/menu_about"
+            android:title="@string/menu_about"/>
+
+        <item
+            android:id="@+id/menu_license"
+            android:title="@string/menu_licsence"/>
+    </group>
+
+</menu>
