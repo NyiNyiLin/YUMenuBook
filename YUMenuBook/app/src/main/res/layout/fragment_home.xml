@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.nyi.yumenubook.fragments.HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/margin_medium">
+
+        <TextView
+            android:id="@+id/lbl_science"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/margin_medium"
+            android:text="@string/lbl_science_canteen"
+            android:textColor="#000"
+            android:textSize="@dimen/text_heading_1x" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/see_more"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_science_canteen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/lbl_science"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:scrollbarStyle="outsideOverlay" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_medium">
+
+        <TextView
+            android:id="@+id/lbl_taungnoo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/margin_medium"
+            android:text="@string/lbl_taung_noo_canteen"
+            android:textColor="#000"
+            android:textSize="@dimen/text_heading_1x" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/see_more"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_regular_2x" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_taungnoo_canteen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/lbl_taungnoo"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:scrollbarStyle="outsideOverlay" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>
