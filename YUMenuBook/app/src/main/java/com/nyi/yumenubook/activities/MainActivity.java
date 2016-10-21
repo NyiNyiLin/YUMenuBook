@@ -1,4 +1,4 @@
-package com.nyi.yumenubook;
+package com.nyi.yumenubook.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,8 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import com.nyi.yumenubook.R;
+import com.nyi.yumenubook.data.VOs.ShopVO;
+import com.nyi.yumenubook.views.holders.ShopViewHolder;
+
+public class MainActivity extends AppCompatActivity implements ShopViewHolder.ControllerShopItem{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,5 +53,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onTapShopItem(ShopVO shopVO) {
+        Toast.makeText(getApplicationContext(), "Shop " + shopVO.getName(), Toast.LENGTH_SHORT).show();
     }
 }
