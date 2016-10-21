@@ -19,6 +19,14 @@
         android:layout_weight="1"
         android:src="@mipmap/ic_launcher"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="@dimen/margin_large"
+        android:layout_marginRight="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@color/colorPrimary"/>
+
     <TextView
         android:id="@+id/tv_shop_name"
         android:layout_width="match_parent"

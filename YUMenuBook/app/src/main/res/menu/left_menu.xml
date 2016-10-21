@@ -15,9 +15,7 @@
         <item
             android:id="@+id/menu_record"
             android:title="@string/menu_record"/>
-    </group>
 
-    <group>
         <item
             android:id="@+id/menu_about"
             android:title="@string/menu_about"/>

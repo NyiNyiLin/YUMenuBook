@@ -83,14 +83,12 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+        drawerLayout.closeDrawer(GravityCompat.START);
         int id = item.getItemId();
-
         switch (id){
             case R.id.menu_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, HomeFragment.newInstance()).commit();
                 return true;
-
         }
         return false;
     }

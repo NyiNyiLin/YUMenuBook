@@ -4,21 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/margin_medium"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.nyi.yumenubook.fragments.HomeFragment"
-    tools:showIn="@layout/activity_main">
+    tools:context="com.nyi.yumenubook.fragments.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/margin_medium">
 
         <TextView
             android:id="@+id/lbl_science"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/margin_medium"
             android:text="@string/lbl_science_canteen"
             android:textColor="#000"
             android:textSize="@dimen/text_heading_1x" />
@@ -48,12 +48,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_medium">
 
         <TextView
             android:id="@+id/lbl_taungnoo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/margin_medium"
             android:text="@string/lbl_taung_noo_canteen"
             android:textColor="#000"
             android:textSize="@dimen/text_heading_1x" />
