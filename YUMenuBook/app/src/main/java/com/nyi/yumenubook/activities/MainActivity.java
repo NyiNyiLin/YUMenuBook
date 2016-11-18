@@ -1,5 +1,6 @@
 package com.nyi.yumenubook.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -79,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
     @Override
     public void onTapShopItem(ShopVO shopVO) {
         Toast.makeText(getApplicationContext(), "Shop " + shopVO.getName(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), ShopDetailActivity.class);
+        startActivity(intent);
     }
 
     @Override
