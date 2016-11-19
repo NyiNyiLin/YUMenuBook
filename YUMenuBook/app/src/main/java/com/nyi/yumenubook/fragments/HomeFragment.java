@@ -27,14 +27,10 @@ import butterknife.ButterKnife;
  */
 public class HomeFragment extends Fragment {
 
-    @BindView(R.id.rv_science_canteen)
-    RecyclerView rvScienceCanteen;
+    @BindView(R.id.rv_shop)
+    RecyclerView rvShop;
 
-    @BindView(R.id.rv_taungnoo_canteen)
-    RecyclerView rvTaungnooCanteen;
-
-    private List<ShopVO> mScienceShopList;
-    private List<ShopVO> mTaungnooShopList;
+    private List<ShopVO> mShopList;
 
     private ShopViewHolder.ControllerShopItem mControllerShopItem;
 
@@ -55,11 +51,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(mScienceShopList == null){
-            mScienceShopList = new ArrayList<>();
-        }
-        if(mTaungnooShopList == null){
-            mTaungnooShopList = new ArrayList<>();
+        if(mShopList == null){
+            mShopList = new ArrayList<>();
         }
 
         assignDummyData();
@@ -72,30 +65,20 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
 
-        ShopAdapter scienceAdapter = new ShopAdapter(mScienceShopList, mControllerShopItem);
-        rvScienceCanteen.setAdapter(scienceAdapter);
+        ShopAdapter shopAdapter = new ShopAdapter(mShopList, mControllerShopItem);
+        rvShop.setAdapter(shopAdapter);
 
-        ShopAdapter taungNooAdapter = new ShopAdapter(mTaungnooShopList, mControllerShopItem);
-        rvTaungnooCanteen.setAdapter(taungNooAdapter);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(YUMenuBookApp.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rvScienceCanteen.setLayoutManager(layoutManager);
-
-        LinearLayoutManager layoutManager2 = new LinearLayoutManager(YUMenuBookApp.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rvTaungnooCanteen.setLayoutManager(layoutManager2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(YUMenuBookApp.getContext(), LinearLayoutManager.VERTICAL, false);
+        rvShop.setLayoutManager(layoutManager);
 
         return view;
     }
 
     private void assignDummyData(){
-        mScienceShopList.add(new ShopVO("Shwe Pha Lar"));
-        mScienceShopList.add(new ShopVO("Shan Ma Lay"));
-        mScienceShopList.add(new ShopVO("U Chit"));
+        mShopList.add(new ShopVO("Shwe Pha Lar"));
+        mShopList.add(new ShopVO("Shan Ma Lay"));
+        mShopList.add(new ShopVO("U Chit"));
 
-        mTaungnooShopList.add(new ShopVO("Shop 1"));
-        mTaungnooShopList.add(new ShopVO("Shop 2"));
-        mTaungnooShopList.add(new ShopVO("Shop 3"));
-        mTaungnooShopList.add(new ShopVO("Shop 4"));
     }
 
 

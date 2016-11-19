@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196F3</color>
-    <color name="colorPrimaryDark">#1976D2</color>
-    <color name="colorAccent">#FFC107</color>
+    <color name="colorPrimary">#835647</color>
+    <color name="colorPrimaryDark">#9e6e65</color>
+    <color name="colorAccent">#eed07d</color>
 
     <!-- Amber -->
      <color name="primary">#2196F3</color>
