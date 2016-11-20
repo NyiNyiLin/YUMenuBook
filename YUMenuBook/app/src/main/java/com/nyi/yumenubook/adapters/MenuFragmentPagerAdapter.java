@@ -34,7 +34,7 @@ public class MenuFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public float getPageWidth (int position) {
-        return 0.93f;
+        return 1f;
     }
 
     @Override

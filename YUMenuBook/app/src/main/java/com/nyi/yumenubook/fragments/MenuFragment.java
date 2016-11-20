@@ -20,14 +20,18 @@ import com.nyi.yumenubook.adapters.MenuFragmentPagerAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.relex.circleindicator.CircleIndicator;
 
 
 public class MenuFragment extends Fragment {
-    @BindView(R.id.tab_type)
-    TabLayout tabType;
+    /*@BindView(R.id.tab_type)
+    TabLayout tabType;*/
 
     @BindView(R.id.pager_item)
     ViewPager pagerItem;
+
+    @BindView(R.id.indicator)
+    CircleIndicator indicator;
 
     MenuFragmentPagerAdapter menuFragmentPagerAdapter;
 
@@ -65,6 +69,7 @@ public class MenuFragment extends Fragment {
 
         menuFragmentPagerAdapter.addTab(MenuItemFragment.newInstance("a","a"), "aa");
         menuFragmentPagerAdapter.addTab(MenuItemFragment.newInstance("b","b"), "bb");
+        menuFragmentPagerAdapter.addTab(MenuItemFragment.newInstance("c","c"), "cc");
         pagerItem.setAdapter(menuFragmentPagerAdapter);
 
         Log.d("aa", menuFragmentPagerAdapter.getCount() + "");
@@ -75,8 +80,11 @@ public class MenuFragment extends Fragment {
         pagerItem.setClipToPadding(false);
         pagerItem.setPageMargin(12);
 
+        //to connect with circle indicator anf view pager
+        indicator.setViewPager(pagerItem);
+
         //to connect with tab layout and view pager
-        tabType.setupWithViewPager(pagerItem);
+        //tabType.setupWithViewPager(pagerItem);
         return view;
     }
 

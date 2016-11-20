@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuFragmentPagerAdapter;
+import com.nyi.yumenubook.fragments.CartFragment;
 import com.nyi.yumenubook.fragments.HomeFragment;
 import com.nyi.yumenubook.fragments.MenuFragment;
 import com.nyi.yumenubook.fragments.MenuItemFragment;
@@ -59,16 +60,13 @@ public class ShopDetailActivity extends AppCompatActivity implements BottomNavig
         int id = item.getItemId();
         switch (id){
             case R.id.action_cart:
-                Toast.makeText(YUMenuBookApp.getContext(), "Cart", Toast.LENGTH_SHORT).show();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fl_detail, MenuItemFragment.newInstance("j","l")).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fl_detail, CartFragment.newInstance("j","l")).commit();
                 break;
             case R.id.action_menu:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fl_detail, MenuFragment.newInstance()).commit();
-                Toast.makeText(YUMenuBookApp.getContext(), "Menu", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_review:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fl_detail, MenuItemFragment.newInstance("j","l")).commit();
-                Toast.makeText(YUMenuBookApp.getContext(), "Review", Toast.LENGTH_SHORT).show();
                 break;
         }
 
