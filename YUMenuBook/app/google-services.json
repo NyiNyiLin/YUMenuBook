@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "854050154813",
+    "firebase_url": "https://yumenubookuser.firebaseio.com",
+    "project_id": "yumenubookuser",
+    "storage_bucket": "yumenubookuser.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854050154813:android:e1098647ad9ecc5e",
+        "android_client_info": {
+          "package_name": "com.nyi.yumenubook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854050154813-7o5o8goe0csdfb80bs438eik72ju8367.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nyi.yumenubook",
+            "certificate_hash": "7EDBC82F51002AF2DA354DD392AEF36401A324E5"
+          }
+        },
+        {
+          "client_id": "854050154813-kb1pl7lokg58tsflobllid7rdarf2lf0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxcKAztjpSoI2Jii4mT5c8VWOuWfnwXxo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854050154813-kb1pl7lokg58tsflobllid7rdarf2lf0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
