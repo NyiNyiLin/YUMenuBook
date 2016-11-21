@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#835647</color>
-    <color name="colorPrimaryDark">#9e6e65</color>
+    <color name="colorPrimary">#f7f7f7</color>
+    <color name="colorPrimaryDark">#d7d7d7</color>
     <color name="colorAccent">#eed07d</color>
+    
+    <color name="colorSecondary">#835647</color>
 
     <!-- Amber -->
-     <color name="primary">#2196F3</color>
+    <color name="primary">#2196F3</color>
   <color name="primary_dark">#1976D2</color>
   <color name="primary_light">#BBDEFB</color>
   <color name="accent">#FFC107</color>
@@ -33,5 +35,11 @@
     <color name="contessa">#d06b6b</color>
     <color name="light_coral">#f88585</color>
     <color name="mona_lisa">#ff8a8a</color>
+
+
+    <!-- Grey -->
+    <!--<color name="colorPrimary">#835647</color>
+    <color name="colorPrimaryDark">#9e6e65</color>
+    <color name="colorAccent">#eed07d</color>-->
 
 </resources>

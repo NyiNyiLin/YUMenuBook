@@ -47,6 +47,6 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopViewHolder> {
 
     public void addNewShop(ShopVO shopVO){
         mShopVOList.add(shopVO);
-        notifyDataSetChanged();
+        notifyItemInserted(mShopVOList.size());
     }
 }

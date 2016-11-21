@@ -9,13 +9,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.phenotype.Flag;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.data.VOs.ShopVO;
+import com.nyi.yumenubook.data.models.ShopModel;
 import com.nyi.yumenubook.fragments.HomeFragment;
 import com.nyi.yumenubook.views.holders.ShopViewHolder;
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_left_menu_24dp);
+
         }
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -79,8 +83,8 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
 
     @Override
     public void onTapShopItem(ShopVO shopVO) {
-        Toast.makeText(getApplicationContext(), "Shop " + shopVO.getName(), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(), ShopDetailActivity.class);
+        ShopModel.getobjInstance().addUserSelectedShop(shopVO);
+        Intent intent = ShopDetailActivity.newIntent();
         startActivity(intent);
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ShopVO {
 
-    private String ID;
+    private String shopID;
     private String name;
     private String imageLink;
     private String place;
@@ -17,14 +17,14 @@ public class ShopVO {
     public ShopVO() {
     }
 
-    public ShopVO(String ID, String name, String imageLink) {
-        this.ID = ID;
+    public ShopVO(String shopID, String name, String imageLink) {
+        this.shopID = shopID;
         this.name = name;
         this.imageLink = imageLink;
     }
 
-    public ShopVO(String ID, String name, String imageLink, String place, List<String> type) {
-        this.ID = ID;
+    public ShopVO(String shopID, String name, String imageLink, String place, List<String> type) {
+        this.shopID = shopID;
         this.name = name;
         this.imageLink = imageLink;
         this.place = place;
@@ -35,8 +35,8 @@ public class ShopVO {
         this.name = name;
     }
 
-    public String getID() {
-        return ID;
+    public String getShopID() {
+        return shopID;
     }
 
     public String getName() {

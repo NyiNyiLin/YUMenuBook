@@ -27,7 +27,7 @@
                 android:textSize="@dimen/text_regular_2x"
                 android:gravity="center"
                 android:padding="@dimen/margin_medium"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/colorSecondary"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_cart_menuItem"
@@ -38,7 +38,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorSecondary"
                 android:layout_marginLeft="@dimen/margin_medium"
                 android:layout_marginRight="@dimen/margin_medium"
                 android:layout_marginTop="@dimen/margin_medium"/>
@@ -50,30 +50,32 @@
                 android:padding="@dimen/margin_medium">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:text="Total"
                     android:textSize="@dimen/text_regular_2x"
                     android:textColor="@color/primary_text"/>
 
                 <TextView
                     android:id="@+id/tv_cart_menu_total_price"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/margin_large"
                     android:layout_weight="2"
                     android:text="Price"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/text_regular_2x" />
 
 
             </LinearLayout>
 
             <Button
+                android:id="@+id/btn_cart_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Order"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorSecondary"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/margin_medium"/>

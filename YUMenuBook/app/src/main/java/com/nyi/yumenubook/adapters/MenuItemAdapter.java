@@ -49,6 +49,6 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemViewHolder> {
 
     public void addNewMenu(MenuItem menuItem){
         mMenuItemList.add(menuItem);
-        notifyDataSetChanged();
+        notifyItemInserted(mMenuItemList.size());
     }
 }

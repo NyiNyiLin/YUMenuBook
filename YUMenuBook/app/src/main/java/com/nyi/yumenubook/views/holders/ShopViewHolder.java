@@ -19,6 +19,9 @@ public class ShopViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     @BindView(R.id.tv_shop_name)
     TextView tvShopName;
 
+    @BindView(R.id.tv_shop_place)
+    TextView tvShopPlace;
+
     private ControllerShopItem mControllerShopItem;
     private ShopVO mShopVO;
 
@@ -33,6 +36,7 @@ public class ShopViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public void bindShop(ShopVO shopVO){
         this.mShopVO = shopVO;
         tvShopName.setText(shopVO.getName());
+        tvShopPlace.setText(shopVO.getPlace());
     }
 
     @Override

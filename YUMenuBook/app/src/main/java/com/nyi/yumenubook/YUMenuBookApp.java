@@ -18,8 +18,8 @@ public class YUMenuBookApp extends Application{
         super.onCreate();
         context = getApplicationContext();
 
-        FirebaseUtil.getObjInstance().uploadTestMenu();
-        FirebaseUtil.getObjInstance().uploadTestShop();
+        //FirebaseUtil.getObjInstance().uploadTestMenu();
+        //FirebaseUtil.getObjInstance().uploadTestShop();
     }
 
     public static Context getContext() {
