@@ -9,14 +9,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuItemAdapter;
 import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.data.VOs.ShopVO;
 import com.nyi.yumenubook.data.models.MenuModel;
 import com.nyi.yumenubook.events.DataEvent;
+import com.nyi.yumenubook.utils.Constants;
+import com.nyi.yumenubook.utils.FirebaseUtil;
 import com.nyi.yumenubook.views.holders.MenuItemViewHolder;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,6 +35,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.google.android.gms.internal.zzs.TAG;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MenuItemFragment#newInstance} factory method to
@@ -34,26 +44,30 @@ import butterknife.ButterKnife;
  */
 public class MenuItemFragment extends Fragment implements MenuItemViewHolder.ControllerMenuItem{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_SHOP_ID = "shopID";
+    private static final String ARG_TYPE = "type";
 
-    private String mParam1;
-    private String mParam2;
+    private String mShopID;
+    private String mShopType;
 
     @BindView(R.id.rv_menuItem)
     RecyclerView rvMenuItem;
 
+    @BindView(R.id.tv_menu_item_title_type)
+    TextView tvTitleType;
+
     private List<MenuItem> mMenuItemList;
+    private MenuItemAdapter menuItemAdapter;
 
     public MenuItemFragment() {
         // Required empty public constructor
     }
 
-    public static MenuItemFragment newInstance(String param1, String param2) {
+    public static MenuItemFragment newInstance(String shopID, String type) {
         MenuItemFragment fragment = new MenuItemFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_SHOP_ID, shopID);
+        args.putString(ARG_TYPE, type);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,15 +76,13 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mShopID = getArguments().getString(ARG_SHOP_ID);
+            mShopType = getArguments().getString(ARG_TYPE);
         }
 
         if(mMenuItemList == null){
             mMenuItemList = new ArrayList<>();
         }
-        dummyData();
-
     }
 
     @Override
@@ -80,12 +92,15 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
         View view = inflater.inflate(R.layout.fragment_menu_item, container, false);
         ButterKnife.bind(this, view);
 
-        MenuItemAdapter menuItemAdapter = new MenuItemAdapter(mMenuItemList, this);
+        tvTitleType.setText(mShopType);
+
+        menuItemAdapter = new MenuItemAdapter(mMenuItemList, this);
         rvMenuItem.setAdapter(menuItemAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(YUMenuBookApp.getContext(), LinearLayoutManager.VERTICAL, false);
         rvMenuItem.setLayoutManager(layoutManager);
 
+        getMenuItemFromFirebase();
 
         return view;
     }
@@ -97,6 +112,49 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
 
         Toast.makeText(YUMenuBookApp.getContext(), menuItem.getName() + " is added to your Cart", Toast.LENGTH_SHORT).show();
         MenuModel.getobjInstance().addMenuItemToCartMenuList(menuItem);
+    }
+
+    private void getMenuItemFromFirebase(){
+        DatabaseReference ref = FirebaseUtil.getObjInstance().getDatabaseReference().child(Constants.DETAIL).child(mShopID).child(Constants.MENUITEM).child(mShopType);
+
+        ChildEventListener childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(Constants.TAG, "onMenuItemChildAdded:" + dataSnapshot.getKey());
+
+                MenuItem menuItem = dataSnapshot.getValue(MenuItem.class);
+                menuItem.setMenuItemID(dataSnapshot.getKey());
+                menuItemAdapter.addNewMenu(menuItem);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(Constants.TAG, "onMenuItemChildChildren:" + dataSnapshot.getKey());
+
+                MenuItem menuItem = dataSnapshot.getValue(MenuItem.class);
+                menuItem.setMenuItemID(dataSnapshot.getKey());
+                menuItemAdapter.changeMenu(menuItem);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Log.d(Constants.TAG, "onMenuItemChildMoved:" + dataSnapshot.getKey());
+
+                String removeMenuID = dataSnapshot.getKey();
+                menuItemAdapter.removeMenu(removeMenuID);
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(Constants.TAG, "onChildMoved:" + dataSnapshot.getKey());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+        ref.addChildEventListener(childEventListener);
     }
 
     private void dummyData() {

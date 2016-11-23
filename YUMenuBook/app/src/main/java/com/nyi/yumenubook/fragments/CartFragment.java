@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nyi.yumenubook.R;
@@ -18,6 +19,7 @@ import com.nyi.yumenubook.adapters.MenuItemAdapter;
 import com.nyi.yumenubook.data.VOs.MenuItem;
 import com.nyi.yumenubook.data.models.MenuModel;
 import com.nyi.yumenubook.events.DataEvent;
+import com.nyi.yumenubook.utils.Constants;
 import com.nyi.yumenubook.views.holders.CartMenuItemViewHolder;
 import com.nyi.yumenubook.views.holders.MenuItemViewHolder;
 
@@ -43,8 +45,15 @@ public class CartFragment extends Fragment implements CartMenuItemViewHolder.Con
     @BindView(R.id.rv_cart_menuItem)
     RecyclerView rvCartMenuItem;
 
+    @BindView(R.id.tv_cart_menu_total_price)
+    TextView tvTotalPrice;
+
+    @BindView(R.id.tv_cart_ph)
+    TextView tvCartPlaceHolder;
+
     private MenuCartItemAdapter menuItemAdapter;
     private List<MenuItem> mMenuItemList;
+    private int total;
 
 
     public CartFragment() {
@@ -81,6 +90,13 @@ public class CartFragment extends Fragment implements CartMenuItemViewHolder.Con
         ButterKnife.bind(this, view);
 
         mMenuItemList = MenuModel.getobjInstance().getCartMenuItemList();
+
+        Log.d(Constants.TAG, "Cart Item Count " + mMenuItemList.size());
+
+        for(MenuItem menuItem: mMenuItemList){
+            total = total + menuItem.getPrice();
+        }
+        tvTotalPrice.setText(total + "");
         menuItemAdapter = new MenuCartItemAdapter(mMenuItemList, this);
         rvCartMenuItem.setAdapter(menuItemAdapter);
 
@@ -106,7 +122,9 @@ public class CartFragment extends Fragment implements CartMenuItemViewHolder.Con
     @Override
     public void onTapMenuItem(MenuItem menuItem, int position) {
         Toast.makeText(YUMenuBookApp.getContext(), menuItem.getName() + " is removed from your Cart", Toast.LENGTH_SHORT).show();
-        mMenuItemList.remove(position);
+        //mMenuItemList.remove(position);
+        total = total - menuItem.getPrice();
+        tvTotalPrice.setText(total + "");
         menuItemAdapter.removeMenu(position);
 
     }

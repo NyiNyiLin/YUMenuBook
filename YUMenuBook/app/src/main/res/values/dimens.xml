@@ -21,7 +21,7 @@
     <dimen name="text_big">40sp</dimen>
     <dimen name="text_big_2x">60sp</dimen>
     <dimen name="text_big_3x">80sp</dimen>
-    <dimen name="left_menu_width">280dp</dimen>
+    <dimen name="left_menu_width">120dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
 </resources>

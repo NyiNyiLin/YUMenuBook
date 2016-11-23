@@ -17,6 +17,10 @@ import android.widget.Toast;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuFragmentPagerAdapter;
+import com.nyi.yumenubook.data.VOs.ShopVO;
+import com.nyi.yumenubook.data.models.ShopModel;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +38,9 @@ public class MenuFragment extends Fragment {
     CircleIndicator indicator;
 
     MenuFragmentPagerAdapter menuFragmentPagerAdapter;
+    private ShopVO shopVO;
+    private List<String> shopTypeList;
+    private String shopid;
 
     public MenuFragment() {
         // Required empty public constructor
@@ -52,6 +59,9 @@ public class MenuFragment extends Fragment {
         if (getArguments() != null) {
 
         }
+        shopVO = ShopModel.getobjInstance().getShopVO();
+        shopTypeList = shopVO.getType();
+        shopid = shopVO.getShopID();
 
     }
 
@@ -64,12 +74,11 @@ public class MenuFragment extends Fragment {
 
         //getFragmentManager().beginTransaction().replace(R.id.fl, MenuItemFragment.newInstance("j","l")).commit();
 
-
         menuFragmentPagerAdapter = new MenuFragmentPagerAdapter(getChildFragmentManager());
 
-        menuFragmentPagerAdapter.addTab(MenuItemFragment.newInstance("a","a"), "aa");
-        menuFragmentPagerAdapter.addTab(MenuItemFragment.newInstance("b","b"), "bb");
-        menuFragmentPagerAdapter.addTab(MenuItemFragment.newInstance("c","c"), "cc");
+        for(String s: shopTypeList){
+            if(!s.isEmpty())menuFragmentPagerAdapter.addTab(MenuItemFragment.newInstance(shopid, s), s);
+        }
         pagerItem.setAdapter(menuFragmentPagerAdapter);
 
         Log.d("aa", menuFragmentPagerAdapter.getCount() + "");

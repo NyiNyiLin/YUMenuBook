@@ -20,13 +20,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_menu_item_title_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cold Drink"
                 android:textSize="@dimen/text_regular_2x"
                 android:gravity="center"
                 android:padding="@dimen/margin_medium"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/colorSecondary"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_menuItem"

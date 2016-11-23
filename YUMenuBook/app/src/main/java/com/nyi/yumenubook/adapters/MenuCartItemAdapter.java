@@ -50,7 +50,6 @@ public class MenuCartItemAdapter extends RecyclerView.Adapter<CartMenuItemViewHo
         mMenuItemList.add(menuItem);
         notifyDataSetChanged();
 
-
     }
 
     public void removeMenu(int position){
