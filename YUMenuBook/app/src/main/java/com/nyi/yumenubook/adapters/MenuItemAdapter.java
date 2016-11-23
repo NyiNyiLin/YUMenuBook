@@ -51,4 +51,29 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemViewHolder> {
         mMenuItemList.add(menuItem);
         notifyItemInserted(mMenuItemList.size());
     }
+
+    public void changeMenu(MenuItem newMenuItem){
+        int position = 0;
+        for(int a=0; a<getItemCount(); a++ ){
+            MenuItem menuItem = mMenuItemList.get(a);
+            if(menuItem.getMenuItemID().equals(newMenuItem.getMenuItemID())){
+                position = a;
+            }
+        }
+        mMenuItemList.remove(position);
+        mMenuItemList.add(position, newMenuItem);
+        notifyItemChanged(position);
+    }
+
+    public void removeMenu(String removedMenuID){
+        int position = 0;
+        for(int a=0; a<getItemCount(); a++ ){
+            MenuItem menuItem = mMenuItemList.get(a);
+            if(menuItem.getMenuItemID().equals(removedMenuID)){
+                position = a;
+            }
+        }
+        mMenuItemList.remove(position);
+        notifyItemRemoved(position);
+    }
 }

@@ -5,6 +5,7 @@
     android:orientation="horizontal"
     android:padding="@dimen/margin_medium">
 
+
     <TextView
         android:id="@+id/tv_item_menu_name"
         android:layout_width="match_parent"

@@ -5,6 +5,7 @@ package com.nyi.yumenubook.data.VOs;
  */
 
 public class MenuItem {
+    private String menuItemID;
     private String name;
     private int price;
     private int available;
@@ -33,5 +34,13 @@ public class MenuItem {
 
     public int getAvailable() {
         return available;
+    }
+
+    public String getMenuItemID() {
+        return menuItemID;
+    }
+
+    public void setMenuItemID(String menuItemID) {
+        this.menuItemID = menuItemID;
     }
 }

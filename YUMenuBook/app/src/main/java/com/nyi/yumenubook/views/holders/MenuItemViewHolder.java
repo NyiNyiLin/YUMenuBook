@@ -2,12 +2,12 @@ package com.nyi.yumenubook.views.holders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.utils.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,7 +24,7 @@ public class MenuItemViewHolder extends RecyclerView.ViewHolder implements View.
     TextView tvItemMenuPrice;
 
     @BindView(R.id.tv_item_menu_add)
-    ImageView tvItemMenuAdd;
+    ImageView ivItemMenuAdd;
 
     private ControllerMenuItem mControllerMenuItem;
     private MenuItem menuItem;
@@ -34,7 +34,7 @@ public class MenuItemViewHolder extends RecyclerView.ViewHolder implements View.
         this.mControllerMenuItem = controllerMenuItem;
 
         ButterKnife.bind(this, itemView);
-        tvItemMenuAdd.setOnClickListener(this);
+        ivItemMenuAdd.setOnClickListener(this);
 
     }
 
@@ -42,6 +42,9 @@ public class MenuItemViewHolder extends RecyclerView.ViewHolder implements View.
         this.menuItem = menuItem;
         tvItemMenuName.setText(menuItem.getName());
         tvItemMenuPrice.setText(menuItem.getPrice() + "");
+
+        if(menuItem.getAvailable() == Constants.AVAILABLE) ivItemMenuAdd.setVisibility(View.VISIBLE);
+        else if(menuItem.getAvailable() == Constants.NOT_AVAILABLE) ivItemMenuAdd.setVisibility(View.INVISIBLE);
     }
 
     @Override

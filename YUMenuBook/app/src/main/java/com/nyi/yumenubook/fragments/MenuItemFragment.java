@@ -120,27 +120,33 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d("YU", "onMenuItemChildAdded:" + dataSnapshot.getKey());
+                Log.d(Constants.TAG, "onMenuItemChildAdded:" + dataSnapshot.getKey());
 
                 MenuItem menuItem = dataSnapshot.getValue(MenuItem.class);
+                menuItem.setMenuItemID(dataSnapshot.getKey());
                 menuItemAdapter.addNewMenu(menuItem);
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+                Log.d(Constants.TAG, "onMenuItemChildChildren:" + dataSnapshot.getKey());
 
+                MenuItem menuItem = dataSnapshot.getValue(MenuItem.class);
+                menuItem.setMenuItemID(dataSnapshot.getKey());
+                menuItemAdapter.changeMenu(menuItem);
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
+                Log.d(Constants.TAG, "onMenuItemChildMoved:" + dataSnapshot.getKey());
 
+                String removeMenuID = dataSnapshot.getKey();
+                menuItemAdapter.removeMenu(removeMenuID);
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
+                Log.d(Constants.TAG, "onChildMoved:" + dataSnapshot.getKey());
 
             }
 
