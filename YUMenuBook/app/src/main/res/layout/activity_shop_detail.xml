@@ -1,84 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.nyi.yumenubook.activities.ShopDetailActivity">
+    android:paddingBottom="@dimen/margin_medium"
+    app:cardBackgroundColor="#fdfdfd"
+    app:cardCornerRadius="10dp">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:expandedTitleGravity="center"
-            app:collapsedTitleTextAppearance="@style/CollapsedAppBar"
-            app:expandedTitleTextAppearance="@style/ExpandedAppBar"
-            >
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_background_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"
-                android:alpha="0.2"
-                android:src="@drawable/burger" />
-
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                android:titleTextColor="@color/colorSecondary"/>
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_medium">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_medium"
+                    android:src="@drawable/ic_navigate_before_black_24dp"
+                    android:onClick="back"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:src="@drawable/ic_chat_black_24dp" />
+
+                <TextView
+                    android:id="@+id/tv_shop_detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/text_regular_3x"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tab_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                app:tabGravity="center"
+                app:tabIndicatorColor="@color/colorSecondary"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/colorPrimaryDark"
+                app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionMode.Subtitle"
+                app:tabTextColor="#66d68f42" />
+
+            <!--<LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_large"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_shape_left"
+                    android:paddingLeft="@dimen/btn_padding"
+                    android:paddingRight="@dimen/btn_padding"
+                    android:text="Breakfast"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_shape_center"
+                    android:paddingLeft="@dimen/btn_padding"
+                    android:paddingRight="@dimen/btn_padding"
+                    android:text="Lunch"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_shape_right"
+                    android:paddingLeft="@dimen/btn_padding"
+                    android:paddingRight="@dimen/btn_padding"
+                    android:text="Drink"
+                    android:textColor="@color/white" />
+            </LinearLayout>-->
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="48dp"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_large"
+                app:cardElevation="16dp"
+                app:cardCornerRadius="10dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/pager_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" />
+
+            </android.support.v7.widget.CardView>
+
+            <!--<android.support.v4.view.ViewPager
+                android:id="@+id/pager_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_large"
+                android:padding="@dimen/margin_medium"
+                android:gravity="center"
+                android:background="@color/white"/>-->
 
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </LinearLayout>
 
-    </android.support.design.widget.AppBarLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/pager_item"
+            app:layout_anchorGravity="bottom|center"
+            app:srcCompat="@drawable/ic_local_grocery_store_black_24dp"
+            android:onClick="cartClick"/>
 
-   <!-- <include
-        android:id="@+id/detail_main"
-        layout="@layout/content_shop_detail" />-->
+    </android.support.design.widget.CoordinatorLayout>
 
-    <FrameLayout
-        android:id="@+id/fl_detail"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        />
+</android.support.v7.widget.CardView>
 
-   <!-- <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />-->
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/fl_detail"
-        app:layout_anchorGravity="bottom"
-        app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@color/colorSecondary"
-        app:itemTextColor="@color/colorSecondary"
-        app:menu="@menu/bottom_navigation_main"/>
 
-</android.support.design.widget.CoordinatorLayout>

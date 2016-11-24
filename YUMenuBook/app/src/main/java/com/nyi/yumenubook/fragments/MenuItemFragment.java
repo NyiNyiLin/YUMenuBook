@@ -53,8 +53,6 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
     @BindView(R.id.rv_menuItem)
     RecyclerView rvMenuItem;
 
-    @BindView(R.id.tv_menu_item_title_type)
-    TextView tvTitleType;
 
     private List<MenuItem> mMenuItemList;
     private MenuItemAdapter menuItemAdapter;
@@ -91,8 +89,6 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu_item, container, false);
         ButterKnife.bind(this, view);
-
-        tvTitleType.setText(mShopType);
 
         menuItemAdapter = new MenuItemAdapter(mMenuItemList, this);
         rvMenuItem.setAdapter(menuItemAdapter);
