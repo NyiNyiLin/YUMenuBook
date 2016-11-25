@@ -31,6 +31,7 @@ import com.nyi.yumenubook.fragments.CartFragment;
 import com.nyi.yumenubook.fragments.HomeFragment;
 import com.nyi.yumenubook.fragments.MenuFragment;
 import com.nyi.yumenubook.fragments.MenuItemFragment;
+import com.nyi.yumenubook.utils.Constants;
 
 import java.util.List;
 
@@ -83,13 +84,13 @@ public class ShopDetailActivity extends AppCompatActivity{
         pagerItem.setAdapter(menuFragmentPagerAdapter);
         tabType.setupWithViewPager(pagerItem);
 
-        Log.d("aa", menuFragmentPagerAdapter.getCount() + "");
+        Log.d(Constants.TAG, menuFragmentPagerAdapter.getCount() + "");
 
         //to create all of the fragment
         pagerItem.setOffscreenPageLimit(menuFragmentPagerAdapter.getCount());
 
-        pagerItem.setClipToPadding(false);
-        pagerItem.setPageMargin(12);
+        //pagerItem.setClipToPadding(false);
+        //pagerItem.setPageMargin(12);
     }
 
     public void back(View v){

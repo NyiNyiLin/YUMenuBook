@@ -1,9 +1,20 @@
-<!--<android.support.v7.widget.CardView android:id="@+id/cv_menu"
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/card_background_color">
+
+<android.support.v7.widget.CardView
+    android:id="@+id/cv_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardElevation="16dp"
+    android:layout_marginLeft="@dimen/margin_large"
+    android:layout_marginRight="@dimen/margin_large"
+    android:layout_marginTop="@dimen/margin_large"
+    android:layout_marginBottom="@dimen/margin_large"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardCornerRadius="@dimen/card_corner_radius"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">-->
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,15 +26,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/margin_medium">
+        android:paddingTop="@dimen/margin_medium"
+        android:paddingBottom="@dimen/margin_medium"
+        android:paddingLeft="@dimen/margin_large"
+        android:paddingRight="@dimen/margin_large">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Food"
-            android:textColor="@color/colorSecondary"
-            android:textSize="@dimen/text_regular_2x" />
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/text_regular_2x"
+            android:gravity="left"
+            android:paddingLeft="@dimen/margin_large"/>
 
         <TextView
             android:id="@+id/tv_cart_menu_total_price"
@@ -32,7 +48,7 @@
             android:layout_marginRight="@dimen/margin_large"
             android:layout_weight="2"
             android:text="Price"
-            android:textColor="@color/colorSecondary"
+            android:textColor="@color/color_text"
             android:textSize="@dimen/text_regular_2x" />
 
 
@@ -47,4 +63,5 @@
 
 </LinearLayout>
 
-<!--</android.support.v7.widget.CardView>-->
+</android.support.v7.widget.CardView>
+    </LinearLayout>

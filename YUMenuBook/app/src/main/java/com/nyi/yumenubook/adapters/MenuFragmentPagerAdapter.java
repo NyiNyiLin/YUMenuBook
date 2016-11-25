@@ -32,10 +32,10 @@ public class MenuFragmentPagerAdapter extends FragmentPagerAdapter {
         return mFragments.size();
     }
 
-    @Override
+/*    @Override
     public float getPageWidth (int position) {
         return 1f;
-    }
+    }*/
 
     @Override
     public CharSequence getPageTitle(int position) {

@@ -4,62 +4,72 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
+    android:background="@color/left_bg_color"
     android:fitsSystemWindows="true">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/margin_medium"
-        app:cardBackgroundColor="#fdfdfd"
-        app:cardCornerRadius="10dp">
+        app:cardBackgroundColor="@color/grey_white"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <RelativeLayout
+                android:id="@+id/rl_title"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="@dimen/title_height"
                 android:orientation="horizontal"
                 android:padding="@dimen/margin_medium">
 
                 <ImageView
                     android:id="@+id/iv_open_left_menu"
-                    android:layout_width="wrap_content"
+                    android:layout_width="36dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="@dimen/margin_medium"
-                    android:src="@drawable/ic_left_menu_24dp" />
+                    android:paddingLeft="16dp"
+                    android:src="@drawable/ic_left_menu_24dp"
+                    android:layout_alignParentLeft="true"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="24dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginRight="@dimen/margin_medium_2"
                     android:src="@drawable/ic_search_black_24dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_medium"
                     android:gravity="center"
                     android:text="@string/app_name"
-                    android:textColor="@color/colorSecondary"
+                    android:textColor="@color/color_text"
                     android:textSize="@dimen/text_regular_3x"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:layout_centerInParent="true"/>
 
             </RelativeLayout>
 
+            <View
+                android:id="@+id/view_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                android:layout_below="@id/rl_title"/>
 
             <FrameLayout
                 android:id="@+id/main_frame"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_below="@id/rl_title"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </android.support.v7.widget.CardView>
@@ -77,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/bgColor"
+            android:background="@color/left_bg_selected_color"
             android:orientation="vertical"
             android:paddingBottom="@dimen/margin_large"
             android:paddingTop="@dimen/margin_large">
@@ -92,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="HOME"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_regular_2x" />
 
         </LinearLayout>
@@ -101,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/bgColor"
+            android:background="@color/left_bg_color"
             android:orientation="vertical"
             android:paddingBottom="@dimen/margin_medium"
             android:paddingTop="@dimen/margin_large">
@@ -116,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="ORDER"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_regular_2x" />
 
         </LinearLayout>
@@ -125,7 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/bgColor"
+            android:background="@color/left_bg_color"
             android:orientation="vertical"
             android:paddingBottom="@dimen/margin_medium"
             android:paddingTop="@dimen/margin_large">
@@ -140,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="PROFILE"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_regular_2x" />
 
         </LinearLayout>
@@ -149,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/bgColor"
+            android:background="@color/left_bg_color"
             android:orientation="vertical"
             android:paddingBottom="@dimen/margin_medium"
             android:paddingTop="@dimen/margin_large">
@@ -164,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="INFO"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:textSize="@dimen/text_regular_2x" />
 
         </LinearLayout>

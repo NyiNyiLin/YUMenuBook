@@ -4,9 +4,8 @@
     android:id="@+id/cv_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/margin_medium"
-    app:cardBackgroundColor="#fdfdfd"
-    app:cardCornerRadius="10dp">
+    app:cardBackgroundColor="@color/grey_white"
+    app:cardCornerRadius="@dimen/card_corner_radius">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -19,7 +18,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="@dimen/title_height"
                 android:orientation="horizontal"
                 android:padding="@dimen/margin_medium">
 
@@ -27,24 +26,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:src="@drawable/ic_navigate_before_black_24dp"
                     android:onClick="back"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/margin_medium_2"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/margin_medium"
-                    android:src="@drawable/ic_chat_black_24dp" />
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:src="@drawable/ic_rate_review_black_24dp" />
 
                 <TextView
                     android:id="@+id/tv_shop_detail_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
                     android:gravity="center"
                     android:text="@string/app_name"
-                    android:textColor="@color/colorSecondary"
+                    android:textColor="@color/color_text"
                     android:textSize="@dimen/text_regular_3x"
                     android:textStyle="bold" />
 
@@ -53,53 +54,19 @@
             <android.support.design.widget.TabLayout
                 android:id="@+id/tab_type"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:layout_height="20dp"
+                android:background="@color/card_background_color"
                 android:gravity="center"
-                app:tabGravity="center"
-                app:tabIndicatorColor="@color/colorSecondary"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/colorPrimaryDark"
-                app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionMode.Subtitle"
-                app:tabTextColor="#66d68f42" />
-
-            <!--<LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/margin_medium"
                 android:layout_marginTop="@dimen/margin_large"
-                android:orientation="horizontal">
+                app:tabGravity="center"
+                app:tabIndicatorColor="@android:color/transparent"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/white"
+                app:tabBackground="@drawable/tab_color_selector"
+                app:tabTextAppearance="@android:style/TextAppearance.DeviceDefault.Widget.ActionMode.Subtitle"
+                app:tabTextColor="#a5f98915" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_shape_left"
-                    android:paddingLeft="@dimen/btn_padding"
-                    android:paddingRight="@dimen/btn_padding"
-                    android:text="Breakfast"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_shape_center"
-                    android:paddingLeft="@dimen/btn_padding"
-                    android:paddingRight="@dimen/btn_padding"
-                    android:text="Lunch"
-                    android:textColor="@color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/btn_shape_right"
-                    android:paddingLeft="@dimen/btn_padding"
-                    android:paddingRight="@dimen/btn_padding"
-                    android:text="Drink"
-                    android:textColor="@color/white" />
-            </LinearLayout>-->
-
-            <android.support.v7.widget.CardView
+            <!--<android.support.v7.widget.CardView
                 android:id="@+id/cv_menu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -116,29 +83,26 @@
                     android:layout_height="wrap_content"
                     android:gravity="center" />
 
-            </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>-->
 
-            <!--<android.support.v4.view.ViewPager
+            <android.support.v4.view.ViewPager
                 android:id="@+id/pager_item"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="48dp"
-                android:layout_marginLeft="@dimen/margin_large"
-                android:layout_marginRight="@dimen/margin_large"
-                android:layout_marginTop="@dimen/margin_large"
-                android:padding="@dimen/margin_medium"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="32dp"
                 android:gravity="center"
-                android:background="@color/white"/>-->
+                android:background="@color/card_background_color"/>
 
 
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/fab_size"
+            android:layout_height="@dimen/fab_size"
             app:layout_anchor="@id/pager_item"
             app:layout_anchorGravity="bottom|center"
+            android:layout_marginBottom="32dp"
             app:srcCompat="@drawable/ic_local_grocery_store_black_24dp"
             android:onClick="cartClick"/>
 
