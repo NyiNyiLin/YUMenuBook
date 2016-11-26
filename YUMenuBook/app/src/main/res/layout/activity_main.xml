@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/left_bg_color"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="false">
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_main"
@@ -31,28 +31,28 @@
                     android:id="@+id/iv_open_left_menu"
                     android:layout_width="36dp"
                     android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
                     android:paddingLeft="16dp"
-                    android:src="@drawable/ic_left_menu_24dp"
-                    android:layout_alignParentLeft="true"/>
+                    android:src="@drawable/ic_left_menu_24dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="24dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/margin_medium_2"
                     android:layout_marginRight="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium_2"
                     android:src="@drawable/ic_search_black_24dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:gravity="center"
                     android:text="@string/app_name"
+                    android:textAllCaps="true"
                     android:textColor="@color/color_text"
                     android:textSize="@dimen/text_regular_3x"
-                    android:textStyle="bold"
-                    android:textAllCaps="true"
-                    android:layout_centerInParent="true"/>
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -60,14 +60,14 @@
                 android:id="@+id/view_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="visible"
-                android:layout_below="@id/rl_title"/>
+                android:layout_below="@id/rl_title"
+                android:visibility="visible" />
 
             <FrameLayout
                 android:id="@+id/main_frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/rl_title"/>
+                android:layout_below="@id/rl_title" />
 
         </RelativeLayout>
 
@@ -81,103 +81,133 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingBottom="@dimen/margin_medium"
-        android:paddingTop="@dimen/margin_medium">
+        android:paddingTop="@dimen/margin_medium"
+        android:weightSum="4">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/rl_leftMenu_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/left_menu_item_mergin"
+            android:layout_marginTop="@dimen/left_menu_item_mergin"
             android:layout_weight="1"
-            android:background="@color/left_bg_selected_color"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/margin_large"
-            android:paddingTop="@dimen/margin_large">
+            android:background="@color/left_bg_selected_color">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_home_white_24dp" />
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="HOME"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_regular_2x" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home_white_24dp" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="HOME"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_regular_2x" />
 
-        <LinearLayout
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_leftMenu_order"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/left_menu_item_mergin"
+            android:layout_marginTop="@dimen/left_menu_item_mergin"
             android:layout_weight="1"
-            android:background="@color/left_bg_color"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/margin_medium"
-            android:paddingTop="@dimen/margin_large">
+            android:background="@color/left_bg_color">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_chat_black_24dp" />
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="ORDER"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_regular_2x" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_chat_black_24dp" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="ORDER"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_regular_2x" />
 
-        <LinearLayout
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_leftMenu_profile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/left_menu_item_mergin"
+            android:layout_marginTop="@dimen/left_menu_item_mergin"
             android:layout_weight="1"
-            android:background="@color/left_bg_color"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/margin_medium"
-            android:paddingTop="@dimen/margin_large">
+            android:background="@color/left_bg_color">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_person_black_24dp" />
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="PROFILE"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_regular_2x" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_person_black_24dp"/>
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="PROFILE"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_regular_2x" />
 
-        <LinearLayout
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_leftMenu_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/left_menu_item_mergin"
+            android:layout_marginTop="@dimen/left_menu_item_mergin"
             android:layout_weight="1"
-            android:background="@color/left_bg_color"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/margin_medium"
-            android:paddingTop="@dimen/margin_large">
+            android:background="@color/left_bg_color">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_info_outline_black_24dp" />
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="INFO"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_regular_2x" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_info_outline_black_24dp" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="INFO"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_regular_2x" />
+
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 

@@ -30,4 +30,7 @@
     <dimen name="card_elevation">12dp</dimen>
     <dimen name="card_corner_radius">12dp</dimen>
     <dimen name="fab_size">52dp</dimen>
+
+    <dimen name="left_menu_item_mergin">16dp</dimen>
+    <dimen name="profile_text_padding">8dp</dimen>
 </resources>

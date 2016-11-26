@@ -2,6 +2,7 @@ package com.nyi.yumenubook.activities;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
@@ -12,17 +13,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.ShopVO;
 import com.nyi.yumenubook.data.models.ShopModel;
 import com.nyi.yumenubook.fragments.HomeFragment;
+import com.nyi.yumenubook.fragments.ProfileFragment;
 import com.nyi.yumenubook.views.holders.ShopViewHolder;
 
 import butterknife.BindView;
@@ -48,10 +53,24 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
     @BindView(R.id.view_main)
     View viewMain;
 
+    @BindView(R.id.rl_leftMenu_home)
+    RelativeLayout rlLefMenuHome;
+
+    @BindView(R.id.rl_leftMenu_order)
+    RelativeLayout rlLefMenuOrder;
+
+    @BindView(R.id.rl_leftMenu_profile)
+    RelativeLayout rlLefMenuProfile;
+
+    @BindView(R.id.rl_leftMenu_info)
+    RelativeLayout rlLefMenuInfo;
+
     private ObjectAnimator leftAnimation;
     private Animation animSlideRight;
     private Animation animSlideLeft;
     private boolean leftMenuOpen = false;
+    private final String LEFT_BG_SELECTED_COLOR = "#ffb364";
+    private final String LEFT_BG_COLOR = "#fc952a";
 
     //Swipe
     private float x1,x2;
@@ -78,9 +97,7 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
             @Override
             public void onClick(View view) {
                 //if it is open, to close and if it is close, to open;
-                if(leftMenuOpen == false) {
-                    openLeftMenu();
-                }
+                if(leftMenuOpen == false) openLeftMenu();
                 else if(leftMenuOpen == true) closeLeftMenu();
             }
         });
@@ -89,6 +106,25 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
             @Override
             public void onClick(View view) {
                 closeLeftMenu();
+            }
+        });
+
+        rlLefMenuHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leftMenuHomeClick();
+            }
+        });
+        rlLefMenuProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leftMenuProfileClick();
+            }
+        });
+        rlLefMenuInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leftMenuInfoClick();
             }
         });
     }
@@ -116,27 +152,6 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         ShopModel.getobjInstance().addUserSelectedShop(shopVO);
         Intent intent = ShopDetailActivity.newIntent();
         startActivity(intent);
-    }
-
-    private void openLeftMenu(){
-        if(leftMenuOpen == false){
-            leftAnimation.start();
-
-            animSlideRight = AnimationUtils.loadAnimation(YUMenuBookApp.getContext(), R.anim.slide_right);
-            //leftMenu.startAnimation(animSlideRight);
-            viewMain.setVisibility(View.VISIBLE);
-            leftMenuOpen = true;
-        }
-    }
-    private void closeLeftMenu(){
-        if(leftMenuOpen == true){
-            leftAnimation.reverse();
-
-            animSlideLeft = AnimationUtils.loadAnimation(YUMenuBookApp.getContext(), R.anim.slide_left);
-            ///leftMenu.startAnimation(animSlideLeft);
-            viewMain.setVisibility(View.GONE);
-            leftMenuOpen = false;
-        }
     }
 
     @Override
@@ -173,4 +188,60 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         }
         return super.onTouchEvent(event);
     }
+
+    private void openLeftMenu(){
+        if(leftMenuOpen == false){
+            leftAnimation.start();
+
+            animSlideRight = AnimationUtils.loadAnimation(YUMenuBookApp.getContext(), R.anim.slide_right);
+            //leftMenu.startAnimation(animSlideRight);
+            viewMain.setVisibility(View.VISIBLE);
+            leftMenuOpen = true;
+        }
+    }
+
+    private void closeLeftMenu(){
+        if(leftMenuOpen == true){
+            leftAnimation.reverse();
+
+            animSlideLeft = AnimationUtils.loadAnimation(YUMenuBookApp.getContext(), R.anim.slide_left);
+            ///leftMenu.startAnimation(animSlideLeft);
+            viewMain.setVisibility(View.GONE);
+            leftMenuOpen = false;
+        }
+    }
+
+    private void leftMenuHomeClick(){
+        rlLefMenuHome.setBackgroundColor(Color.parseColor(LEFT_BG_SELECTED_COLOR));
+        rlLefMenuInfo.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuOrder.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuProfile.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+
+        closeLeftMenu();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, HomeFragment.newInstance()).commit();
+    }
+
+    private void leftMenuProfileClick(){
+        rlLefMenuHome.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuInfo.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuOrder.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuProfile.setBackgroundColor(Color.parseColor(LEFT_BG_SELECTED_COLOR));
+
+        closeLeftMenu();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, ProfileFragment.newInstance("a", "b")).commit();
+    }
+
+    private void leftMenuInfoClick(){
+        rlLefMenuHome.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuInfo.setBackgroundColor(Color.parseColor(LEFT_BG_SELECTED_COLOR));
+        rlLefMenuOrder.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuProfile.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+
+        closeLeftMenu();
+        Intent intent = SignInActivity.newIntent();
+        startActivity(intent);
+    }
+
+
+
 }
