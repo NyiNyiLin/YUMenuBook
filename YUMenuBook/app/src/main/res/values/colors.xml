@@ -1,45 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f7f7f7</color>
-    <color name="colorPrimaryDark">#d7d7d7</color>
-    <color name="colorAccent">#eed07d</color>
+    <color name="colorPrimary">#f98915</color>
+    <color name="colorPrimaryDark">#e4861f</color>
+    <color name="colorAccent">#cd7a20</color>
     
-    <color name="colorSecondary">#835647</color>
+    <color name="color_text">#f98915</color>
+    <color name="bgColor">#ffa649</color>
+    <color name="left_bg_color">#fc952a</color>
+    <color name="left_bg_selected_color">#ffb364</color>
+    <color name="white">#fdfdfd</color>
+    <color name="card_background_color">#f5f5f5</color>
 
-    <!-- Amber -->
-    <color name="primary">#2196F3</color>
-  <color name="primary_dark">#1976D2</color>
-  <color name="primary_light">#BBDEFB</color>
-  <color name="accent">#FFC107</color>
   <color name="primary_text">#212121</color>
   <color name="secondary_text">#757575</color>
-  <color name="icons">#FFFFFF</color>
   <color name="divider">#BDBDBD</color>
-
-    <color name="color_primary">#8892a1</color>
-
-    <!--<color name="primary">#9E9E9E</color>
-    <color name="primary_dark">#616161</color>
-    <color name="primary_light">#F5F5F5</color>
-    <color name="accent">#448AFF</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#757575</color>
-    <color name="icons">#212121</color>
-    <color name="divider">#BDBDBD</color>-->
 
     <!-- coffee -->
     <color name="grey_white">#f5f5f5</color>
-    <color name="white">#fdfdfd</color>
     <color name="thistle">#d8d2d7</color>
     <color name="manatee">#8892a1</color>
     <color name="contessa">#d06b6b</color>
     <color name="light_coral">#f88585</color>
     <color name="mona_lisa">#ff8a8a</color>
-
-
-    <!-- Grey -->
-    <!--<color name="colorPrimary">#835647</color>
-    <color name="colorPrimaryDark">#9e6e65</color>
-    <color name="colorAccent">#eed07d</color>-->
 
 </resources>

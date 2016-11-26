@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="@dimen/margin_medium">
+    android:paddingTop="@dimen/margin_medium"
+    android:paddingBottom="@dimen/margin_medium">
 
     <TextView
         android:id="@+id/tv_item_cart_menu_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/margin_large"
         android:layout_weight="1"
         android:text="Name"
         android:textSize="@dimen/text_regular"
-        android:textColor="@color/primary_text"/>
+        android:textColor="@color/color_text"/>
 
     <TextView
         android:id="@+id/tv_item_cart_menu_price"
@@ -20,7 +22,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0"
         android:text="Price"
-        android:textColor="@color/primary_text"
+        android:textColor="@color/color_text"
         android:textSize="@dimen/text_regular" />
 
 
@@ -31,7 +33,7 @@
         android:src="@drawable/ic_highlight_off_black_24dp"
         android:gravity="center"
         android:paddingLeft="@dimen/margin_large"
-        android:paddingRight="@dimen/margin_medium"/>
+        android:paddingRight="@dimen/margin_large"/>
 
 
 </LinearLayout>

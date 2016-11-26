@@ -24,4 +24,13 @@
     <dimen name="left_menu_width">120dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="btn_padding">24dp</dimen>
+    <dimen name="title_height">68dp</dimen>
+    <dimen name="card_elevation">12dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="fab_size">52dp</dimen>
+
+    <dimen name="left_menu_item_mergin">16dp</dimen>
+    <dimen name="profile_text_padding">8dp</dimen>
 </resources>

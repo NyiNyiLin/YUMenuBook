@@ -18,6 +18,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nyi.yumenubook.R;
@@ -29,26 +31,28 @@ import com.nyi.yumenubook.fragments.CartFragment;
 import com.nyi.yumenubook.fragments.HomeFragment;
 import com.nyi.yumenubook.fragments.MenuFragment;
 import com.nyi.yumenubook.fragments.MenuItemFragment;
+import com.nyi.yumenubook.utils.Constants;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ShopDetailActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class ShopDetailActivity extends AppCompatActivity{
+    @BindView(R.id.tv_shop_detail_title)
+    TextView tvShopDetailTitle;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.pager_item)
+    ViewPager pagerItem;
 
-    @BindView(R.id.fl_detail)
-    FrameLayout fl_detail;
-
-    @BindView(R.id.bottomNavigation)
-    BottomNavigationView bottomNavigationView;
-
-    @BindView(R.id.toolbar_layout)
-    CollapsingToolbarLayout collapsingToolbarLayout;
+    @BindView(R.id.tab_type)
+    TabLayout tabType;
 
     //private final String ARG_
     private ShopVO shopVO;
+    private List<String> shopTypeList;
+    private String shopid;
+    private MenuFragmentPagerAdapter menuFragmentPagerAdapter;
 
     public static Intent newIntent() {
         Intent newIntent= new Intent(YUMenuBookApp.getContext(), ShopDetailActivity.class);
@@ -66,36 +70,35 @@ public class ShopDetailActivity extends AppCompatActivity implements BottomNavig
         setContentView(R.layout.activity_shop_detail);
         ButterKnife.bind(this, this);
 
-        setSupportActionBar(toolbar);
-        //getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
-        ActionBar actionBar = getSupportActionBar();
-
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(true);
-
         shopVO = ShopModel.getobjInstance().getShopVO();
-        actionBar.setTitle(shopVO.getName());
+        shopTypeList = shopVO.getType();
+        shopid = shopVO.getShopID();
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl_detail, MenuFragment.newInstance()).commit();
+        tvShopDetailTitle.setText(shopVO.getName());
 
+        menuFragmentPagerAdapter = new MenuFragmentPagerAdapter(getSupportFragmentManager());
+
+        for(String s: shopTypeList){
+            if(!s.isEmpty())menuFragmentPagerAdapter.addTab(MenuItemFragment.newInstance(shopid, s), s);
+        }
+        pagerItem.setAdapter(menuFragmentPagerAdapter);
+        tabType.setupWithViewPager(pagerItem);
+
+        Log.d(Constants.TAG, menuFragmentPagerAdapter.getCount() + "");
+
+        //to create all of the fragment
+        pagerItem.setOffscreenPageLimit(menuFragmentPagerAdapter.getCount());
+
+        //pagerItem.setClipToPadding(false);
+        //pagerItem.setPageMargin(12);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case R.id.action_cart:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fl_detail, CartFragment.newInstance("j","l")).commit();
-                break;
-            case R.id.action_menu:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fl_detail, MenuFragment.newInstance()).commit();
-                break;
-            case R.id.action_review:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fl_detail, MenuItemFragment.newInstance("j","l")).commit();
-                break;
-        }
+    public void back(View v){
+        this.finish();
+    }
 
-        return false;
+    public void cartClick(View view){
+        Intent intent = CartActivity.newIntent();
+        startActivity(intent);
     }
 }

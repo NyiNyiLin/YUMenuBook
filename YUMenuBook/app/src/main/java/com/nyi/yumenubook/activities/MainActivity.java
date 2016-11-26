@@ -2,50 +2,79 @@ package com.nyi.yumenubook.activities;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
-import com.google.android.gms.phenotype.Flag;
 import com.nyi.yumenubook.R;
+import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.ShopVO;
 import com.nyi.yumenubook.data.models.ShopModel;
 import com.nyi.yumenubook.fragments.HomeFragment;
+import com.nyi.yumenubook.fragments.ProfileFragment;
 import com.nyi.yumenubook.views.holders.ShopViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements ShopViewHolder.ControllerShopItem, NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements ShopViewHolder.ControllerShopItem{
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    /*@BindView(R.id.toolbar)
+    Toolbar toolbar;*/
 
     @BindView(R.id.main_frame)
     FrameLayout frameLayout;
 
-    @BindView(R.id.navigation_view)
-    NavigationView navigationView;
+    @BindView(R.id.left_menu)
+    LinearLayout leftMenu;
 
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
+    @BindView(R.id.cv_main)
+    CardView cardViewMain;
 
-    @BindView(R.id.cl_main)
-    CoordinatorLayout clMain;
+    @BindView(R.id.iv_open_left_menu)
+    ImageView ivOpenLeftMenu;
+
+    @BindView(R.id.view_main)
+    View viewMain;
+
+    @BindView(R.id.rl_leftMenu_home)
+    RelativeLayout rlLefMenuHome;
+
+    @BindView(R.id.rl_leftMenu_order)
+    RelativeLayout rlLefMenuOrder;
+
+    @BindView(R.id.rl_leftMenu_profile)
+    RelativeLayout rlLefMenuProfile;
+
+    @BindView(R.id.rl_leftMenu_info)
+    RelativeLayout rlLefMenuInfo;
 
     private ObjectAnimator leftAnimation;
+    private Animation animSlideRight;
+    private Animation animSlideLeft;
     private boolean leftMenuOpen = false;
+    private final String LEFT_BG_SELECTED_COLOR = "#ffb364";
+    private final String LEFT_BG_COLOR = "#fc952a";
+
+    //Swipe
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,30 +82,58 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null){
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_left_menu_24dp);
-
-        }
-
-        navigationView.setNavigationItemSelectedListener(this);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, HomeFragment.newInstance()).commit();
 
         leftAnimation = ObjectAnimator.ofFloat(
-                clMain,
+                cardViewMain,
                 "x",
-                350);
+                300);
         leftAnimation.setDuration(500);
+
+        leftMenu.setVisibility(View.VISIBLE);
+        viewMain.setVisibility(View.GONE);
+
+        ivOpenLeftMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //if it is open, to close and if it is close, to open;
+                if(leftMenuOpen == false) openLeftMenu();
+                else if(leftMenuOpen == true) closeLeftMenu();
+            }
+        });
+
+        viewMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closeLeftMenu();
+            }
+        });
+
+        rlLefMenuHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leftMenuHomeClick();
+            }
+        });
+        rlLefMenuProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leftMenuProfileClick();
+            }
+        });
+        rlLefMenuInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leftMenuInfoClick();
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -84,44 +141,107 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        switch (id){
-            case android.R.id.home:
-                if(leftMenuOpen == false){
-                    leftAnimation.start();
-                    leftMenuOpen = true;
-                }else if(leftMenuOpen == true){
-                    leftAnimation.reverse();
-                    leftMenuOpen = false;
-                }
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onTapShopItem(ShopVO shopVO) {
+        closeLeftMenu();
         ShopModel.getobjInstance().addUserSelectedShop(shopVO);
         Intent intent = ShopDetailActivity.newIntent();
         startActivity(intent);
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        drawerLayout.closeDrawer(GravityCompat.START);
+    public boolean onTouchEvent(MotionEvent event) {
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN:
+                x1 = event.getX();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = event.getX();
+                float deltaX = x2 - x1;
+
+                if (Math.abs(deltaX) > MIN_DISTANCE)
+                {
+                    // Left to Right swipe action
+                    if (x2 > x1)
+                    {
+                        openLeftMenu();
+                    }
+
+                    // Right to left swipe action
+                    else
+                    {
+                        closeLeftMenu();
+                    }
+
+                }
+                else
+                {
+                    // consider as something else - a screen tap for example
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    private void openLeftMenu(){
+        if(leftMenuOpen == false){
+            leftAnimation.start();
+
+            animSlideRight = AnimationUtils.loadAnimation(YUMenuBookApp.getContext(), R.anim.slide_right);
+            //leftMenu.startAnimation(animSlideRight);
+            viewMain.setVisibility(View.VISIBLE);
+            leftMenuOpen = true;
+        }
+    }
+
+    private void closeLeftMenu(){
         if(leftMenuOpen == true){
             leftAnimation.reverse();
+
+            animSlideLeft = AnimationUtils.loadAnimation(YUMenuBookApp.getContext(), R.anim.slide_left);
+            ///leftMenu.startAnimation(animSlideLeft);
+            viewMain.setVisibility(View.GONE);
             leftMenuOpen = false;
         }
-        int id = item.getItemId();
-        switch (id){
-            case R.id.menu_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, HomeFragment.newInstance()).commit();
-                return true;
-        }
-        return false;
     }
+
+    private void leftMenuHomeClick(){
+        rlLefMenuHome.setBackgroundColor(Color.parseColor(LEFT_BG_SELECTED_COLOR));
+        rlLefMenuInfo.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuOrder.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuProfile.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+
+        closeLeftMenu();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, HomeFragment.newInstance()).commit();
+    }
+
+    private void leftMenuProfileClick(){
+        rlLefMenuHome.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuInfo.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuOrder.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuProfile.setBackgroundColor(Color.parseColor(LEFT_BG_SELECTED_COLOR));
+
+        closeLeftMenu();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, ProfileFragment.newInstance("a", "b")).commit();
+    }
+
+    private void leftMenuInfoClick(){
+        rlLefMenuHome.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuInfo.setBackgroundColor(Color.parseColor(LEFT_BG_SELECTED_COLOR));
+        rlLefMenuOrder.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuProfile.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+
+        closeLeftMenu();
+        Intent intent = SignInActivity.newIntent();
+        startActivity(intent);
+    }
+
+
+
 }
