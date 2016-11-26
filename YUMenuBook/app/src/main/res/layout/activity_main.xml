@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/left_bg_color"
-    android:fitsSystemWindows="false">
+    android:fitsSystemWindows="true"
+    >
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_main"
@@ -18,7 +19,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/ic_bg">
 
             <RelativeLayout
                 android:id="@+id/rl_title"
@@ -82,7 +84,8 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/margin_medium"
         android:paddingTop="@dimen/margin_medium"
-        android:weightSum="4">
+        android:weightSum="4"
+        android:visibility="visible">
 
         <RelativeLayout
             android:id="@+id/rl_leftMenu_home"
