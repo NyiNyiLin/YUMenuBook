@@ -238,8 +238,6 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         rlLefMenuProfile.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
 
         closeLeftMenu();
-        Intent intent = SignInActivity.newIntent();
-        startActivity(intent);
     }
 
 

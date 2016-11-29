@@ -64,19 +64,16 @@
                 android:lineSpacingMultiplier="1.2"
                 android:layout_below="@id/iv_signin_icon"/>
 
-            <Button
-                android:id="@+id/btn_sign_in"
+
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
                 android:layout_width="wrap_content"
-                android:layout_height="64dp"
-                android:drawableLeft="@drawable/google_logo_small"
-                android:text="    Sign in with Google"
-                android:textColor="@color/color_text"
-                android:padding="@dimen/margin_medium_3"
-                android:background="@drawable/btn_sign_in"
-                android:layout_below="@id/tv_signIn_text"
-                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/margin_xlarge"
-                />
+                android:layout_below="@id/tv_signIn_text"
+                android:layout_centerHorizontal="true"/>
 
         </RelativeLayout>
 

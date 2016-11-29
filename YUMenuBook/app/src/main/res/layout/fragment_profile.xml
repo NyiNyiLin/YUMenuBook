@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_user_profile"
             android:layout_width="112dp"
             android:layout_height="112dp"
             android:layout_centerHorizontal="true"
@@ -171,6 +172,7 @@
                     android:src="@drawable/ic_create_black_24dp"/>
 
                 <Button
+                    android:id="@+id/btn_log_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sign out"

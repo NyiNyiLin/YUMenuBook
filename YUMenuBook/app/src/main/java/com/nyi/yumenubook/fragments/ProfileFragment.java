@@ -1,15 +1,30 @@
 package com.nyi.yumenubook.fragments;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.nyi.yumenubook.R;
+import com.nyi.yumenubook.activities.SignInActivity;
+import com.nyi.yumenubook.utils.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,6 +61,16 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.iv_profile_age_edit)
     ImageView ivProfileAgeEdit;
 
+    @BindView(R.id.btn_log_out)
+    Button btnLogOut;
+
+    @BindView(R.id.iv_user_profile)
+    ImageView ivUserProfile;
+
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -62,10 +87,14 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getContext());
+        mAuth = FirebaseAuth.getInstance();
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
@@ -75,7 +104,63 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, view);
 
+        displayUser();
+
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                LoginManager.getInstance().logOut();
+            }
+        });
+
+        // ...
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser != null) {
+                    // User is signed in
+                    Log.d(Constants.TAG, " Profile Fragment onAuthStateChanged:signed_in:" + firebaseUser.getUid());
+                    displayUser();
+                } else {
+                    // User is signed out
+                    Log.d(Constants.TAG, "Profile Fragment onAuthStateChanged:signed_out");
+                    Intent intent = new Intent(getContext(), SignInActivity.class);
+                    startActivity(intent);
+                }
+            }
+        };
+
         return view;
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    private void displayUser(){
+        if(firebaseUser != null){
+            tvProfileName.setText(firebaseUser.getDisplayName());
+            tvProfileEmail.setText(firebaseUser.getEmail());
+            Glide.with(getContext())
+                    .load(firebaseUser.getPhotoUrl())
+                    .asBitmap().centerCrop()
+                    .placeholder(R.drawable.ic_camera_black_24dp)
+                    .error(R.drawable.ic_camera_black_24dp)
+                    .into(ivUserProfile);
+        }
     }
 
 }

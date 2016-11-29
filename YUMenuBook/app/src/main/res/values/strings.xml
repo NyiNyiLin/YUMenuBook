@@ -18,10 +18,16 @@
     <string name="text_menu">Menu</string>
     <string name="text_review">Review</string>
 
-    <string name="signin_text">You need to sign in with your google account when you make orders or write reviews</string>
+    <string name="signin_text">You need to sign in with your facebook account when you make orders or write reviews</string>
     <string name="title_activity_shop_detail">ShopDetailActivity</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_cart">CartActivity</string>
     <string name="title_activity_sign_in">SignInActivity</string>
+
+    <!-- facebook -->
+    <string name="facebook_app_id">1236572546366312</string>
+
+    <string name="fb_login_protocol_scheme">fb1236572546366312</string>
+
 </resources>
