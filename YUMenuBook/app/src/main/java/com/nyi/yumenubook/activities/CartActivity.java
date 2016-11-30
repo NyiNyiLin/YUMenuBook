@@ -2,12 +2,9 @@ package com.nyi.yumenubook.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -16,7 +13,7 @@ import android.widget.Toast;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuCartItemAdapter;
-import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 import com.nyi.yumenubook.data.models.MenuModel;
 import com.nyi.yumenubook.utils.Constants;
 import com.nyi.yumenubook.views.holders.CartMenuItemViewHolder;
@@ -35,7 +32,7 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
     TextView tvCartTotalPrice;
 
     private MenuCartItemAdapter menuItemAdapter;
-    private List<MenuItem> mMenuItemList;
+    private List<MenuItemVO> mMenuItemVOList;
     private int total;
 
     public static Intent newIntent(){
@@ -50,19 +47,19 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this, this);
 
-        if(mMenuItemList == null){
-            mMenuItemList = new ArrayList<>();
+        if(mMenuItemVOList == null){
+            mMenuItemVOList = new ArrayList<>();
         }
 
-        mMenuItemList = MenuModel.getobjInstance().getCartMenuItemList();
+        mMenuItemVOList = MenuModel.getobjInstance().getCartMenuItemVOList();
 
-        Log.d(Constants.TAG, "Cart Item Count " + mMenuItemList.size());
+        Log.d(Constants.TAG, "Cart Item Count " + mMenuItemVOList.size());
 
-        for(MenuItem menuItem: mMenuItemList){
-            total = total + menuItem.getPrice();
+        for(MenuItemVO menuItemVO : mMenuItemVOList){
+            total = total + menuItemVO.getPrice();
         }
         tvCartTotalPrice.setText(total + " KS");
-        menuItemAdapter = new MenuCartItemAdapter(mMenuItemList, this);
+        menuItemAdapter = new MenuCartItemAdapter(mMenuItemVOList, this);
         rvCartMenuItem.setAdapter(menuItemAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(YUMenuBookApp.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -75,10 +72,10 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
     }
 
     @Override
-    public void onTapMenuItem(MenuItem menuItem, int position) {
-        Toast.makeText(YUMenuBookApp.getContext(), menuItem.getName() + " is removed from your Cart", Toast.LENGTH_SHORT).show();
-        //mMenuItemList.remove(position);
-        total = total - menuItem.getPrice();
+    public void onTapMenuItem(MenuItemVO menuItemVO, int position) {
+        Toast.makeText(YUMenuBookApp.getContext(), menuItemVO.getName() + " is removed from your Cart", Toast.LENGTH_SHORT).show();
+        //mMenuItemVOList.remove(position);
+        total = total - menuItemVO.getPrice();
         tvCartTotalPrice.setText(total + " KS");
         menuItemAdapter.removeMenu(position);
     }

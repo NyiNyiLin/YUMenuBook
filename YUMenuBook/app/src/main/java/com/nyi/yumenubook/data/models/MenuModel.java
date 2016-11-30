@@ -1,6 +1,6 @@
 package com.nyi.yumenubook.data.models;
 
-import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +11,13 @@ import java.util.List;
 
 public class MenuModel{
 
-    private List<MenuItem> cartMenuItemList;
-    private MenuItem menuItem;
+    private List<MenuItemVO> cartMenuItemVOList;
+    private MenuItemVO menuItemVO;
 
     private static MenuModel objInstance;
 
     private MenuModel(){
-        cartMenuItemList = new ArrayList<>();
+        cartMenuItemVOList = new ArrayList<>();
     }
 
     public static MenuModel getobjInstance(){
@@ -25,16 +25,16 @@ public class MenuModel{
         return objInstance;
     }
 
-    public void addMenuItemToCartMenuList(MenuItem menuItem){
-        cartMenuItemList.add(menuItem);
-        this.menuItem = menuItem;
+    public void addMenuItemToCartMenuList(MenuItemVO menuItemVO){
+        cartMenuItemVOList.add(menuItemVO);
+        this.menuItemVO = menuItemVO;
     }
 
-    public List<MenuItem> getCartMenuItemList() {
-        return cartMenuItemList;
+    public List<MenuItemVO> getCartMenuItemVOList() {
+        return cartMenuItemVOList;
     }
 
-    public MenuItem getMenuItem() {
-        return menuItem;
+    public MenuItemVO getMenuItemVO() {
+        return menuItemVO;
     }
 }

@@ -1,6 +1,6 @@
 package com.nyi.yumenubook.events;
 
-import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 
 /**
  * Created by IN-3442 on 20-Nov-16.
@@ -10,19 +10,19 @@ public class DataEvent {
     public static class AddCartEvent{
 
         private String extraMessage;
-        private MenuItem menuItem;
+        private MenuItemVO menuItemVO;
 
-        public AddCartEvent(String extraMessage, MenuItem menuItem) {
+        public AddCartEvent(String extraMessage, MenuItemVO menuItemVO) {
             this.extraMessage = extraMessage;
-            this.menuItem = menuItem;
+            this.menuItemVO = menuItemVO;
         }
 
         public String getExtraMessage() {
             return extraMessage;
         }
 
-        public MenuItem getMenuItem() {
-            return menuItem;
+        public MenuItemVO getMenuItemVO() {
+            return menuItemVO;
         }
     }
 }

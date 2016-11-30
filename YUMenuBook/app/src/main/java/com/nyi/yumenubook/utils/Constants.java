@@ -16,7 +16,7 @@ public class Constants {
     //Firebase location path
     public static final String DETAIL = "Detail";
     public static final String SHOP = "Shop";
-    public static final String MENUITEM = "MenuItem";
+    public static final String MENUITEM = "MenuItemVO";
 
     public static final String DUMMY_LINK = "Dummy Link";
 }

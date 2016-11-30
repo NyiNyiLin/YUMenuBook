@@ -1,10 +1,6 @@
 package com.nyi.yumenubook.data.models;
 
-import com.nyi.yumenubook.data.VOs.MenuItem;
 import com.nyi.yumenubook.data.VOs.ShopVO;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by IN-3442 on 20-Nov-16.

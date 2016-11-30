@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nyi.yumenubook.R;
-import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +26,7 @@ public class CartMenuItemViewHolder extends RecyclerView.ViewHolder implements V
     ImageView tvItemMenuAdd;
 
     private ControllerCartMenuItem mControllerCartMenuItem;
-    private MenuItem menuItem;
+    private MenuItemVO menuItemVO;
     private int posistion;
 
     public CartMenuItemViewHolder(View itemView, ControllerCartMenuItem controllerCartMenuItem) {
@@ -38,19 +38,19 @@ public class CartMenuItemViewHolder extends RecyclerView.ViewHolder implements V
 
     }
 
-    public void bindMenu(MenuItem menuItem, int position){
-        this.menuItem = menuItem;
+    public void bindMenu(MenuItemVO menuItemVO, int position){
+        this.menuItemVO = menuItemVO;
         this.posistion = position;
-        tvItemMenuName.setText(menuItem.getName());
-        tvItemMenuPrice.setText(menuItem.getPrice() + "");
+        tvItemMenuName.setText(menuItemVO.getName());
+        tvItemMenuPrice.setText(menuItemVO.getPrice() + "");
     }
 
     @Override
     public void onClick(View view) {
-        mControllerCartMenuItem.onTapMenuItem(menuItem, posistion);
+        mControllerCartMenuItem.onTapMenuItem(menuItemVO, posistion);
     }
 
     public interface ControllerCartMenuItem {
-        void onTapMenuItem(MenuItem menuItem, int position);
+        void onTapMenuItem(MenuItemVO menuItemVO, int position);
     }
 }

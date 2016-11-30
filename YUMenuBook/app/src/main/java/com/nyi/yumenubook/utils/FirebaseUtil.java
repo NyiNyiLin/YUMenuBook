@@ -2,8 +2,7 @@ package com.nyi.yumenubook.utils;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.connection.idl.ConnectionConfig;
-import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 import com.nyi.yumenubook.data.VOs.ShopVO;
 
 import java.util.ArrayList;
@@ -50,29 +49,29 @@ public class FirebaseUtil {
     public void uploadTestMenu(){
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItem("Fried Rice 1", 1300, 1));
-        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItem("Mone Hin Khar 1", 300, 1));
-        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItem("Pa Lar Tar 1", 100, 1));
+        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItemVO("Fried Rice 1", 1300, 1));
+        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItemVO("Mone Hin Khar 1", 300, 1));
+        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItemVO("Pa Lar Tar 1", 100, 1));
 
-        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItem("Soe Myint Kyaw 1", 1500, 1));
-        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItem("Chinese Fried Rice 1", 1500, 1));
-        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItem("Thai Fried Rice 1", 1500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItemVO("Soe Myint Kyaw 1", 1500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItemVO("Chinese Fried Rice 1", 1500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItemVO("Thai Fried Rice 1", 1500, 1));
 
-        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItem("Cola 1", 300, 1));
-        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItem("Pa Pa Ya 1", 500, 1));
-        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItem("Juice 1", 500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItemVO("Cola 1", 300, 1));
+        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItemVO("Pa Pa Ya 1", 500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shan Ma Lay").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItemVO("Juice 1", 500, 1));
 
-        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItem("Fried Rice 2", 1300, 1));
-        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItem("Mone Hin Khar 2", 300, 1));
-        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItem("Pa Lar Tar 2", 100, 1));
+        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItemVO("Fried Rice 2", 1300, 1));
+        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItemVO("Mone Hin Khar 2", 300, 1));
+        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Breakfast").push().setValue(new MenuItemVO("Pa Lar Tar 2", 100, 1));
 
-        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItem("Soe Myint Kyaw 2", 1500, 1));
-        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItem("Chinese Fried Rice 2", 1500, 1));
-        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItem("Thai Fried Rice 2", 1500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItemVO("Soe Myint Kyaw 2", 1500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItemVO("Chinese Fried Rice 2", 1500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Lunch").push().setValue(new MenuItemVO("Thai Fried Rice 2", 1500, 1));
 
-        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItem("Cola 2", 300, 1));
-        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItem("Pa Pa Ya 2", 500, 1));
-        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItem("Juice 2", 500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItemVO("Cola 2", 300, 1));
+        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItemVO("Pa Pa Ya 2", 500, 1));
+        mDatabase.child(Constants.DETAIL).child("Shwe Pha Lar").child(Constants.MENUITEM).child("Drink").push().setValue(new MenuItemVO("Juice 2", 500, 1));
 
     }
 

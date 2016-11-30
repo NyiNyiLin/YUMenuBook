@@ -15,13 +15,11 @@ import android.widget.Toast;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuCartItemAdapter;
-import com.nyi.yumenubook.adapters.MenuItemAdapter;
-import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 import com.nyi.yumenubook.data.models.MenuModel;
 import com.nyi.yumenubook.events.DataEvent;
 import com.nyi.yumenubook.utils.Constants;
 import com.nyi.yumenubook.views.holders.CartMenuItemViewHolder;
-import com.nyi.yumenubook.views.holders.MenuItemViewHolder;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -52,7 +50,7 @@ public class CartFragment extends Fragment implements CartMenuItemViewHolder.Con
     TextView tvCartPlaceHolder;
 
     private MenuCartItemAdapter menuItemAdapter;
-    private List<MenuItem> mMenuItemList;
+    private List<MenuItemVO> mMenuItemVOList;
     private int total;
 
 
@@ -77,8 +75,8 @@ public class CartFragment extends Fragment implements CartMenuItemViewHolder.Con
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        if(mMenuItemList == null){
-            mMenuItemList = new ArrayList<>();
+        if(mMenuItemVOList == null){
+            mMenuItemVOList = new ArrayList<>();
         }
     }
 
@@ -89,15 +87,15 @@ public class CartFragment extends Fragment implements CartMenuItemViewHolder.Con
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         ButterKnife.bind(this, view);
 
-        mMenuItemList = MenuModel.getobjInstance().getCartMenuItemList();
+        mMenuItemVOList = MenuModel.getobjInstance().getCartMenuItemVOList();
 
-        Log.d(Constants.TAG, "Cart Item Count " + mMenuItemList.size());
+        Log.d(Constants.TAG, "Cart Item Count " + mMenuItemVOList.size());
 
-        for(MenuItem menuItem: mMenuItemList){
-            total = total + menuItem.getPrice();
+        for(MenuItemVO menuItemVO : mMenuItemVOList){
+            total = total + menuItemVO.getPrice();
         }
         tvTotalPrice.setText(total + "");
-        menuItemAdapter = new MenuCartItemAdapter(mMenuItemList, this);
+        menuItemAdapter = new MenuCartItemAdapter(mMenuItemVOList, this);
         rvCartMenuItem.setAdapter(menuItemAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(YUMenuBookApp.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -120,10 +118,10 @@ public class CartFragment extends Fragment implements CartMenuItemViewHolder.Con
 
 
     @Override
-    public void onTapMenuItem(MenuItem menuItem, int position) {
-        Toast.makeText(YUMenuBookApp.getContext(), menuItem.getName() + " is removed from your Cart", Toast.LENGTH_SHORT).show();
-        //mMenuItemList.remove(position);
-        total = total - menuItem.getPrice();
+    public void onTapMenuItem(MenuItemVO menuItemVO, int position) {
+        Toast.makeText(YUMenuBookApp.getContext(), menuItemVO.getName() + " is removed from your Cart", Toast.LENGTH_SHORT).show();
+        //mMenuItemVOList.remove(position);
+        total = total - menuItemVO.getPrice();
         tvTotalPrice.setText(total + "");
         menuItemAdapter.removeMenu(position);
 
@@ -136,10 +134,10 @@ public class CartFragment extends Fragment implements CartMenuItemViewHolder.Con
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(DataEvent.AddCartEvent event) {
-        Log.d("YU", "EventBus Receive " + event.getMenuItem().getName());
+        Log.d("YU", "EventBus Receive " + event.getMenuItemVO().getName());
 
-        MenuItem menuItem = event.getMenuItem();
-        mMenuItemList.add(menuItem);
-        menuItemAdapter.addNewMenu(menuItem);
+        MenuItemVO menuItemVO = event.getMenuItemVO();
+        mMenuItemVOList.add(menuItemVO);
+        menuItemAdapter.addNewMenu(menuItemVO);
     }
 }

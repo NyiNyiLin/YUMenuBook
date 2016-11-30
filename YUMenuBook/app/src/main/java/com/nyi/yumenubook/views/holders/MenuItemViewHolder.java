@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nyi.yumenubook.R;
-import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 import com.nyi.yumenubook.utils.Constants;
 
 import butterknife.BindView;
@@ -27,7 +27,7 @@ public class MenuItemViewHolder extends RecyclerView.ViewHolder implements View.
     ImageView ivItemMenuAdd;
 
     private ControllerMenuItem mControllerMenuItem;
-    private MenuItem menuItem;
+    private MenuItemVO menuItemVO;
 
     public MenuItemViewHolder(View itemView, ControllerMenuItem controllerMenuItem) {
         super(itemView);
@@ -38,21 +38,21 @@ public class MenuItemViewHolder extends RecyclerView.ViewHolder implements View.
 
     }
 
-    public void bindMenu(MenuItem menuItem){
-        this.menuItem = menuItem;
-        tvItemMenuName.setText(menuItem.getName());
-        tvItemMenuPrice.setText(menuItem.getPrice() + "");
+    public void bindMenu(MenuItemVO menuItemVO){
+        this.menuItemVO = menuItemVO;
+        tvItemMenuName.setText(menuItemVO.getName());
+        tvItemMenuPrice.setText(menuItemVO.getPrice() + "");
 
-        if(menuItem.getAvailable() == Constants.AVAILABLE) ivItemMenuAdd.setVisibility(View.VISIBLE);
-        else if(menuItem.getAvailable() == Constants.NOT_AVAILABLE) ivItemMenuAdd.setVisibility(View.INVISIBLE);
+        if(menuItemVO.getAvailable() == Constants.AVAILABLE) ivItemMenuAdd.setVisibility(View.VISIBLE);
+        else if(menuItemVO.getAvailable() == Constants.NOT_AVAILABLE) ivItemMenuAdd.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onClick(View view) {
-        mControllerMenuItem.onTapMenuItem(menuItem);
+        mControllerMenuItem.onTapMenuItem(menuItemVO);
     }
 
     public interface ControllerMenuItem{
-        void onTapMenuItem(MenuItem menuItem);
+        void onTapMenuItem(MenuItemVO menuItemVO);
     }
 }

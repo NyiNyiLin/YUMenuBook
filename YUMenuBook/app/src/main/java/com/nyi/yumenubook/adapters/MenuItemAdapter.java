@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
-import com.nyi.yumenubook.data.VOs.MenuItem;
-import com.nyi.yumenubook.data.VOs.ShopVO;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 import com.nyi.yumenubook.views.holders.MenuItemViewHolder;
-import com.nyi.yumenubook.views.holders.ShopViewHolder;
 
 import java.util.List;
 
@@ -20,11 +18,11 @@ import java.util.List;
 
 public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemViewHolder> {
     private LayoutInflater inflater;
-    private List<MenuItem> mMenuItemList;
+    private List<MenuItemVO> mMenuItemVOList;
     private MenuItemViewHolder.ControllerMenuItem controllerMenuItem;
 
-    public MenuItemAdapter(List<MenuItem> menuItemList, MenuItemViewHolder.ControllerMenuItem controllerMenuItem) {
-        this.mMenuItemList = menuItemList;
+    public MenuItemAdapter(List<MenuItemVO> menuItemVOList, MenuItemViewHolder.ControllerMenuItem controllerMenuItem) {
+        this.mMenuItemVOList = menuItemVOList;
         this.controllerMenuItem = controllerMenuItem;
         inflater = LayoutInflater.from(YUMenuBookApp.getContext());
     }
@@ -39,41 +37,41 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemViewHolder> {
 
     @Override
     public void onBindViewHolder(MenuItemViewHolder holder, int position) {
-        holder.bindMenu(mMenuItemList.get(position));
+        holder.bindMenu(mMenuItemVOList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mMenuItemList.size();
+        return mMenuItemVOList.size();
     }
 
-    public void addNewMenu(MenuItem menuItem){
-        mMenuItemList.add(menuItem);
-        notifyItemInserted(mMenuItemList.size());
+    public void addNewMenu(MenuItemVO menuItemVO){
+        mMenuItemVOList.add(menuItemVO);
+        notifyItemInserted(mMenuItemVOList.size());
     }
 
-    public void changeMenu(MenuItem newMenuItem){
+    public void changeMenu(MenuItemVO newMenuItemVO){
         int position = 0;
         for(int a=0; a<getItemCount(); a++ ){
-            MenuItem menuItem = mMenuItemList.get(a);
-            if(menuItem.getMenuItemID().equals(newMenuItem.getMenuItemID())){
+            MenuItemVO menuItemVO = mMenuItemVOList.get(a);
+            if(menuItemVO.getMenuItemID().equals(newMenuItemVO.getMenuItemID())){
                 position = a;
             }
         }
-        mMenuItemList.remove(position);
-        mMenuItemList.add(position, newMenuItem);
+        mMenuItemVOList.remove(position);
+        mMenuItemVOList.add(position, newMenuItemVO);
         notifyItemChanged(position);
     }
 
     public void removeMenu(String removedMenuID){
         int position = 0;
         for(int a=0; a<getItemCount(); a++ ){
-            MenuItem menuItem = mMenuItemList.get(a);
-            if(menuItem.getMenuItemID().equals(removedMenuID)){
+            MenuItemVO menuItemVO = mMenuItemVOList.get(a);
+            if(menuItemVO.getMenuItemID().equals(removedMenuID)){
                 position = a;
             }
         }
-        mMenuItemList.remove(position);
+        mMenuItemVOList.remove(position);
         notifyItemRemoved(position);
     }
 }

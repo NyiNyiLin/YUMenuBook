@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
-import com.nyi.yumenubook.data.VOs.MenuItem;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 import com.nyi.yumenubook.views.holders.CartMenuItemViewHolder;
 
 import java.util.List;
@@ -18,11 +18,11 @@ import java.util.List;
 
 public class MenuCartItemAdapter extends RecyclerView.Adapter<CartMenuItemViewHolder> {
     private LayoutInflater inflater;
-    private List<MenuItem> mMenuItemList;
+    private List<MenuItemVO> mMenuItemVOList;
     private CartMenuItemViewHolder.ControllerCartMenuItem controllerCartMenuItem;
 
-    public MenuCartItemAdapter(List<MenuItem> menuItemList, CartMenuItemViewHolder.ControllerCartMenuItem controllerCartMenuItem) {
-        this.mMenuItemList = menuItemList;
+    public MenuCartItemAdapter(List<MenuItemVO> menuItemVOList, CartMenuItemViewHolder.ControllerCartMenuItem controllerCartMenuItem) {
+        this.mMenuItemVOList = menuItemVOList;
         this.controllerCartMenuItem = controllerCartMenuItem;
         inflater = LayoutInflater.from(YUMenuBookApp.getContext());
     }
@@ -37,23 +37,23 @@ public class MenuCartItemAdapter extends RecyclerView.Adapter<CartMenuItemViewHo
 
     @Override
     public void onBindViewHolder(CartMenuItemViewHolder holder, int position) {
-        holder.bindMenu(mMenuItemList.get(position), position);
+        holder.bindMenu(mMenuItemVOList.get(position), position);
     }
 
 
     @Override
     public int getItemCount() {
-        return mMenuItemList.size();
+        return mMenuItemVOList.size();
     }
 
-    public void addNewMenu(MenuItem menuItem){
-        mMenuItemList.add(menuItem);
+    public void addNewMenu(MenuItemVO menuItemVO){
+        mMenuItemVOList.add(menuItemVO);
         notifyDataSetChanged();
 
     }
 
     public void removeMenu(int position){
-        mMenuItemList.remove(position);
+        mMenuItemVOList.remove(position);
         notifyItemRemoved(position);
     }
 }

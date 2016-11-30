@@ -23,7 +23,6 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nyi.yumenubook.R;
-import com.nyi.yumenubook.activities.SignInActivity;
 import com.nyi.yumenubook.utils.Constants;
 
 import butterknife.BindView;
@@ -114,41 +113,10 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        // ...
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                firebaseUser = firebaseAuth.getCurrentUser();
-                if (firebaseUser != null) {
-                    // User is signed in
-                    Log.d(Constants.TAG, " Profile Fragment onAuthStateChanged:signed_in:" + firebaseUser.getUid());
-                    displayUser();
-                } else {
-                    // User is signed out
-                    Log.d(Constants.TAG, "Profile Fragment onAuthStateChanged:signed_out");
-                    Intent intent = new Intent(getContext(), SignInActivity.class);
-                    startActivity(intent);
-                }
-            }
-        };
-
         return view;
     }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
 
     private void displayUser(){
         if(firebaseUser != null){

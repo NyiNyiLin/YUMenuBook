@@ -4,21 +4,21 @@ package com.nyi.yumenubook.data.VOs;
  * Created by IN-3442 on 19-Nov-16.
  */
 
-public class MenuItem {
+public class MenuItemVO {
     private String menuItemID;
     private String name;
     private int price;
     private int available;
 
-    public MenuItem() {
+    public MenuItemVO() {
     }
 
-    public MenuItem(String name, int price) {
+    public MenuItemVO(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public MenuItem(String name, int price, int available) {
+    public MenuItemVO(String name, int price, int available) {
         this.name = name;
         this.price = price;
         this.available = available;

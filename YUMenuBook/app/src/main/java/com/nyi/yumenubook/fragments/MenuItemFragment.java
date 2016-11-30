@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -19,8 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuItemAdapter;
-import com.nyi.yumenubook.data.VOs.MenuItem;
-import com.nyi.yumenubook.data.VOs.ShopVO;
+import com.nyi.yumenubook.data.VOs.MenuItemVO;
 import com.nyi.yumenubook.data.models.MenuModel;
 import com.nyi.yumenubook.events.DataEvent;
 import com.nyi.yumenubook.utils.Constants;
@@ -34,8 +32,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.google.android.gms.internal.zzs.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,7 +50,7 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
     RecyclerView rvMenuItem;
 
 
-    private List<MenuItem> mMenuItemList;
+    private List<MenuItemVO> mMenuItemVOList;
     private MenuItemAdapter menuItemAdapter;
 
     public MenuItemFragment() {
@@ -78,8 +74,8 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
             mShopType = getArguments().getString(ARG_TYPE);
         }
 
-        if(mMenuItemList == null){
-            mMenuItemList = new ArrayList<>();
+        if(mMenuItemVOList == null){
+            mMenuItemVOList = new ArrayList<>();
         }
     }
 
@@ -90,7 +86,7 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
         View view = inflater.inflate(R.layout.fragment_menu_item, container, false);
         ButterKnife.bind(this, view);
 
-        menuItemAdapter = new MenuItemAdapter(mMenuItemList, this);
+        menuItemAdapter = new MenuItemAdapter(mMenuItemVOList, this);
         rvMenuItem.setAdapter(menuItemAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(YUMenuBookApp.getContext(), LinearLayoutManager.VERTICAL, false);
@@ -102,12 +98,12 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
     }
 
     @Override
-    public void onTapMenuItem(MenuItem menuItem) {
-        Log.d("YU", menuItem.getName());
-        broadcasMenuItemToCartWithEventBus(menuItem);
+    public void onTapMenuItem(MenuItemVO menuItemVO) {
+        Log.d("YU", menuItemVO.getName());
+        broadcasMenuItemToCartWithEventBus(menuItemVO);
 
-        Toast.makeText(YUMenuBookApp.getContext(), menuItem.getName() + " is added to your Cart", Toast.LENGTH_SHORT).show();
-        MenuModel.getobjInstance().addMenuItemToCartMenuList(menuItem);
+        Toast.makeText(YUMenuBookApp.getContext(), menuItemVO.getName() + " is added to your Cart", Toast.LENGTH_SHORT).show();
+        MenuModel.getobjInstance().addMenuItemToCartMenuList(menuItemVO);
     }
 
     private void getMenuItemFromFirebase(){
@@ -118,18 +114,18 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d(Constants.TAG, "onMenuItemChildAdded:" + dataSnapshot.getKey());
 
-                MenuItem menuItem = dataSnapshot.getValue(MenuItem.class);
-                menuItem.setMenuItemID(dataSnapshot.getKey());
-                menuItemAdapter.addNewMenu(menuItem);
+                MenuItemVO menuItemVO = dataSnapshot.getValue(MenuItemVO.class);
+                menuItemVO.setMenuItemID(dataSnapshot.getKey());
+                menuItemAdapter.addNewMenu(menuItemVO);
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d(Constants.TAG, "onMenuItemChildChildren:" + dataSnapshot.getKey());
 
-                MenuItem menuItem = dataSnapshot.getValue(MenuItem.class);
-                menuItem.setMenuItemID(dataSnapshot.getKey());
-                menuItemAdapter.changeMenu(menuItem);
+                MenuItemVO menuItemVO = dataSnapshot.getValue(MenuItemVO.class);
+                menuItemVO.setMenuItemID(dataSnapshot.getKey());
+                menuItemAdapter.changeMenu(menuItemVO);
             }
 
             @Override
@@ -155,7 +151,7 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
 
     private void dummyData() {
         for(int i=0; i<10; i++){
-            mMenuItemList.add(new MenuItem("Fried Rice " + i, 1300));
+            mMenuItemVOList.add(new MenuItemVO("Fried Rice " + i, 1300));
         }
     }
 
@@ -165,7 +161,7 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
         Check CartFragment
         It receives this broadcast
      */
-    private void broadcasMenuItemToCartWithEventBus(MenuItem menuItem) {
-        EventBus.getDefault().post(new DataEvent.AddCartEvent("Cart Added", menuItem));
+    private void broadcasMenuItemToCartWithEventBus(MenuItemVO menuItemVO) {
+        EventBus.getDefault().post(new DataEvent.AddCartEvent("Cart Added", menuItemVO));
     }
 }
