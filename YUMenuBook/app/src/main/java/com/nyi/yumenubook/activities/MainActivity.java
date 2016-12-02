@@ -5,38 +5,25 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.facebook.AccessToken;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.ShopVO;
-import com.nyi.yumenubook.data.VOs.UserVO;
 import com.nyi.yumenubook.data.models.ShopModel;
 import com.nyi.yumenubook.data.models.UserModel;
 import com.nyi.yumenubook.fragments.HomeFragment;
@@ -294,13 +281,13 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         if (firebaseUser != null) {
             // User is signed in
             Log.d(Constants.TAG, " Main Activity onAuthStateChanged:signed_in:" + firebaseUser.getUid());
-            UserModel.objInstance().setFirebaseUser(firebaseUser.getDisplayName(), firebaseUser.getEmail(), firebaseUser.getPhotoUrl().toString(), true);
+            UserModel.objInstance().saveFirebaseUser(firebaseUser);
             if(isProfileClick) getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, ProfileFragment.newInstance()).commit();
 
         } else {
             // User is signed out
             Log.d(Constants.TAG, "Main Activity onAuthStateChanged:signed_out");
-            UserModel.objInstance().setFirebaseUser(false);
+            UserModel.objInstance().saveFirebaseUser(firebaseUser);
             if(isProfileClick) getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, LogInFragment.newInstance()).commit();
 
         }

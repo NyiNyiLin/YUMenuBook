@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import com.facebook.FacebookSdk;
 import com.nyi.yumenubook.utils.FirebaseUtil;
 
+import io.realm.Realm;
+
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
@@ -22,6 +24,7 @@ public class YUMenuBookApp extends Application{
         super.onCreate();
         context = getApplicationContext();
         FacebookSdk.sdkInitialize(getApplicationContext());
+        Realm.init(getApplicationContext());
 
         //FirebaseUtil.getObjInstance().uploadTestMenu();
         //FirebaseUtil.getObjInstance().uploadTestShop();
