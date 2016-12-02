@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
     @BindView(R.id.rl_leftMenu_info)
     RelativeLayout rlLefMenuInfo;
 
+    @BindView(R.id.tv_main_activity_title)
+    TextView tvMainTitle;
+
     private ObjectAnimator leftAnimation;
     private Animation animSlideRight;
     private Animation animSlideLeft;
@@ -88,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        tvMainTitle.setTypeface(YUMenuBookApp.getTitleTypeface());
 
         //Firebase Authentication
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();

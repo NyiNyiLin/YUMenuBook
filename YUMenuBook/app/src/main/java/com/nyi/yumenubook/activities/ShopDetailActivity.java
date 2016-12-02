@@ -2,34 +2,18 @@ package com.nyi.yumenubook.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuFragmentPagerAdapter;
 import com.nyi.yumenubook.data.VOs.ShopVO;
 import com.nyi.yumenubook.data.models.ShopModel;
-import com.nyi.yumenubook.fragments.CartFragment;
-import com.nyi.yumenubook.fragments.HomeFragment;
-import com.nyi.yumenubook.fragments.MenuFragment;
 import com.nyi.yumenubook.fragments.MenuItemFragment;
 import com.nyi.yumenubook.utils.Constants;
 
@@ -75,6 +59,8 @@ public class ShopDetailActivity extends AppCompatActivity{
         shopid = shopVO.getShopID();
 
         tvShopDetailTitle.setText(shopVO.getName());
+
+        tvShopDetailTitle.setTypeface(YUMenuBookApp.getTitleTypeface());
 
         menuFragmentPagerAdapter = new MenuFragmentPagerAdapter(getSupportFragmentManager());
 
