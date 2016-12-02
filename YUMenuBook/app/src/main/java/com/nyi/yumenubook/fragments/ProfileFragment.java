@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -23,18 +25,19 @@ import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nyi.yumenubook.R;
+import com.nyi.yumenubook.data.models.UserModel;
+import com.nyi.yumenubook.events.DataEvent;
 import com.nyi.yumenubook.utils.Constants;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProfileFragment extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
 
     @BindView(R.id.tv_profile_name)
     TextView tvProfileName;
@@ -70,16 +73,17 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private final String PHONE = "Phone";
+    private final String Major = "Major";
+    private final String AGE = "Age";
+
+
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-    public static ProfileFragment newInstance(String param1, String param2) {
+    public static ProfileFragment newInstance() {
         ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -89,10 +93,6 @@ public class ProfileFragment extends Fragment {
         FacebookSdk.sdkInitialize(getContext());
         mAuth = FirebaseAuth.getInstance();
 
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
@@ -116,6 +116,51 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
+    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(DataEvent.ChangeUserInfo event) {
+        if(event.getTitle().equals(PHONE)){
+            tvProfilePhone.setText(event.getValue());
+            UserModel.objInstance().setUserPhone(event.getValue());
+        }else if(event.getTitle().equals(Major)){
+            tvProfileMajor.setText(event.getValue());
+            UserModel.objInstance().setUserMajor(event.getValue());
+        }else if(event.getTitle().equals(AGE)){
+            tvProfileAge.setText(event.getValue());
+            UserModel.objInstance().setUserAge(Integer.parseInt(event.getValue()));
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @OnClick(R.id.iv_profile_phone_edit)
+    public void phoneEdit(View view){
+        DialogFragment dialog = EditDialogFragment.newInstance(PHONE, UserModel.objInstance().getPhone());
+        dialog.show(getChildFragmentManager(), "Update");
+    }
+
+    @OnClick(R.id.iv_profile_major_edit)
+    public void MajorEdit(View view){
+        DialogFragment dialog = EditDialogFragment.newInstance(Major, UserModel.objInstance().getMajor());
+        dialog.show(getChildFragmentManager(), "Update");
+    }
+
+    @OnClick(R.id.iv_profile_age_edit)
+    public void AgeEdit(View view){
+        DialogFragment dialog = EditDialogFragment.newInstance(AGE, UserModel.objInstance().getAge() + "");
+        dialog.show(getChildFragmentManager(), "Update");
+    }
+
 
 
     private void displayUser(){
@@ -129,6 +174,10 @@ public class ProfileFragment extends Fragment {
                     .error(R.drawable.ic_camera_black_24dp)
                     .into(ivUserProfile);
         }
+
+        tvProfilePhone.setText(UserModel.objInstance().getPhone());
+        tvProfileMajor.setText(UserModel.objInstance().getMajor());
+        tvProfileAge.setText(UserModel.objInstance().getAge() + "");
     }
 
 }

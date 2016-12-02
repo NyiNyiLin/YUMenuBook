@@ -36,7 +36,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.ShopVO;
+import com.nyi.yumenubook.data.VOs.UserVO;
 import com.nyi.yumenubook.data.models.ShopModel;
+import com.nyi.yumenubook.data.models.UserModel;
 import com.nyi.yumenubook.fragments.HomeFragment;
 import com.nyi.yumenubook.fragments.LogInFragment;
 import com.nyi.yumenubook.fragments.ProfileFragment;
@@ -292,11 +294,13 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         if (firebaseUser != null) {
             // User is signed in
             Log.d(Constants.TAG, " Main Activity onAuthStateChanged:signed_in:" + firebaseUser.getUid());
-            if(isProfileClick) getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, ProfileFragment.newInstance("a", "b")).commit();
+            UserModel.objInstance().setFirebaseUser(firebaseUser.getDisplayName(), firebaseUser.getEmail(), firebaseUser.getPhotoUrl().toString(), true);
+            if(isProfileClick) getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, ProfileFragment.newInstance()).commit();
 
         } else {
             // User is signed out
             Log.d(Constants.TAG, "Main Activity onAuthStateChanged:signed_out");
+            UserModel.objInstance().setFirebaseUser(false);
             if(isProfileClick) getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, LogInFragment.newInstance()).commit();
 
         }
