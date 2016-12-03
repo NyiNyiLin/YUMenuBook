@@ -87,4 +87,9 @@ public class ShopDetailActivity extends AppCompatActivity{
         Intent intent = CartActivity.newIntent();
         startActivity(intent);
     }
+
+    public void reviewClick(View view){
+        Intent intent = ReviewActivity.newIntent();
+        startActivity(intent);
+    }
 }

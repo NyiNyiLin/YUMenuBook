@@ -4,7 +4,7 @@
     android:id="@+id/cv_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardBackgroundColor="@color/grey_white"
+    app:cardBackgroundColor="@color/card_background_color"
     app:cardCornerRadius="@dimen/card_corner_radius">
 
     <android.support.design.widget.CoordinatorLayout
@@ -36,7 +36,8 @@
                     android:layout_marginRight="@dimen/margin_medium_2"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/margin_medium_2"
-                    android:src="@drawable/ic_rate_review_black_24dp" />
+                    android:src="@drawable/ic_rate_review_black_24dp"
+                    android:onClick="reviewClick"/>
 
                 <TextView
                     android:id="@+id/tv_shop_detail_title"
