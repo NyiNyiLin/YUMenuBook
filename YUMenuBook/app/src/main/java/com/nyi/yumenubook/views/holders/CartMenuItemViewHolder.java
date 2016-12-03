@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nyi.yumenubook.R;
+import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.MenuItemVO;
 
 import butterknife.BindView;
@@ -34,6 +35,8 @@ public class CartMenuItemViewHolder extends RecyclerView.ViewHolder implements V
         this.mControllerCartMenuItem = controllerCartMenuItem;
 
         ButterKnife.bind(this, itemView);
+        tvItemMenuName.setTypeface(YUMenuBookApp.getTextTypeface());
+        tvItemMenuPrice.setTypeface(YUMenuBookApp.getTextTypeface());
         tvItemMenuAdd.setOnClickListener(this);
 
     }

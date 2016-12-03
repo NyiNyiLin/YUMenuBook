@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="No Item in Shopping Cart"/>
+        android:text="No Item in Shopping Cart"
+        />
 
     <android.support.v7.widget.CardView
         android:id="@+id/cv_cart_list"

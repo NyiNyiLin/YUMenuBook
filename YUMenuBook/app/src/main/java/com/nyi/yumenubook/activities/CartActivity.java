@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,7 +15,9 @@ import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuCartItemAdapter;
 import com.nyi.yumenubook.data.VOs.MenuItemVO;
+import com.nyi.yumenubook.data.VOs.ShopVO;
 import com.nyi.yumenubook.data.models.MenuModel;
+import com.nyi.yumenubook.data.models.ShopModel;
 import com.nyi.yumenubook.utils.Constants;
 import com.nyi.yumenubook.views.holders.CartMenuItemViewHolder;
 
@@ -31,6 +34,12 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
     @BindView(R.id.tv_cart_total_price)
     TextView tvCartTotalPrice;
 
+    @BindView(R.id.tv_shop_cart_title)
+    TextView tvShopCartTitle;
+
+    @BindView(R.id.iv_cart_order)
+    ImageView ivCartOrder;
+
     private MenuCartItemAdapter menuItemAdapter;
     private List<MenuItemVO> mMenuItemVOList;
     private int total;
@@ -46,6 +55,10 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this, this);
+
+        ShopVO shopVO = ShopModel.getobjInstance().getShopVO();
+        tvShopCartTitle.setText(shopVO.getName());
+        tvShopCartTitle.setTypeface(YUMenuBookApp.getTitleTypeface());
 
         if(mMenuItemVOList == null){
             mMenuItemVOList = new ArrayList<>();

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nyi.yumenubook.R;
+import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.ShopVO;
 
 import butterknife.BindView;
@@ -22,12 +23,20 @@ public class ShopViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     @BindView(R.id.tv_shop_place)
     TextView tvShopPlace;
 
+    @BindView(R.id.tv_shop_rating)
+    TextView tvSHopRating;
+
     private ControllerShopItem mControllerShopItem;
     private ShopVO mShopVO;
 
     public ShopViewHolder(View itemView, ControllerShopItem controllerShopItem) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+
+        tvShopName.setTypeface(YUMenuBookApp.getTextTypeface());
+        tvShopPlace.setTypeface(YUMenuBookApp.getTextTypeface());
+        tvSHopRating.setTypeface(YUMenuBookApp.getTextTypeface());
+
         itemView.setOnClickListener(this);
 
         this.mControllerShopItem = controllerShopItem;

@@ -1,14 +1,13 @@
 package com.nyi.yumenubook;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 
 import com.facebook.FacebookSdk;
-import com.nyi.yumenubook.utils.FirebaseUtil;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
+import io.realm.Realm;
 
 /**
  * Created by IN-3442 on 21-Oct-16.
@@ -16,13 +15,20 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class YUMenuBookApp extends Application{
     private static Context context;
+    private static Typeface titleTypeface;
+    private static Typeface textTypeface;
 
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
         FacebookSdk.sdkInitialize(getApplicationContext());
+        Realm.init(getApplicationContext());
 
+        AssetManager am = context.getApplicationContext().getAssets();
+
+        titleTypeface = Typeface.createFromAsset(getAssets(),  "fonts/CoreSansGRounded-Medium.ttf");
+        textTypeface = Typeface.createFromAsset(getAssets(),  "fonts/CoreSansG-Regular.ttf");
         //FirebaseUtil.getObjInstance().uploadTestMenu();
         //FirebaseUtil.getObjInstance().uploadTestShop();
     }
@@ -31,4 +37,11 @@ public class YUMenuBookApp extends Application{
         return context;
     }
 
+    public static Typeface getTitleTypeface() {
+        return titleTypeface;
+    }
+
+    public static Typeface getTextTypeface() {
+        return textTypeface;
+    }
 }

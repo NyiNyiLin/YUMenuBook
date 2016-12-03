@@ -6,6 +6,7 @@
     
     <color name="color_text">#f98915</color>
     <color name="bgColor">#ffa649</color>
+    <color name="color_icon">#f98915</color>
     <color name="left_bg_color">#fc952a</color>
     <color name="left_bg_selected_color">#ffb364</color>
     <color name="white">#fdfdfd</color>
