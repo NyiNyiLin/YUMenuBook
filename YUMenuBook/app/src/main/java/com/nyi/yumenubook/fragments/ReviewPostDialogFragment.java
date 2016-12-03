@@ -13,10 +13,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
+import com.nyi.yumenubook.data.VOs.ReviewVO;
+import com.nyi.yumenubook.data.VOs.ShopVO;
+import com.nyi.yumenubook.data.models.ShopModel;
 import com.nyi.yumenubook.data.models.UserModel;
 import com.nyi.yumenubook.events.DataEvent;
+import com.nyi.yumenubook.utils.Constants;
+import com.nyi.yumenubook.utils.DateUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -68,7 +75,7 @@ public class ReviewPostDialogFragment extends DialogFragment {
         ButterKnife.bind(this, view);
 
         tvPostReviewName.setText(UserModel.objInstance().getName());
-        tvPostReviewDate.setText("12/12/2016");
+        tvPostReviewDate.setText(DateUtil.getCurrentDate());
 
         Glide.with(YUMenuBookApp.getContext())
                 .load(UserModel.objInstance().getPhotoURL())
@@ -86,6 +93,7 @@ public class ReviewPostDialogFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int id) {
 
                         //User Info is brodcast to Profile Fragment
+                        postReviewToFirebase();
 
                     }
                 })
@@ -96,5 +104,19 @@ public class ReviewPostDialogFragment extends DialogFragment {
                 });
 
         return builder.create();
+    }
+
+    private void postReviewToFirebase(){
+        ReviewVO reviewVO= new ReviewVO();
+        reviewVO.setReviewName(UserModel.objInstance().getName());
+        reviewVO.setReviewEmail(UserModel.objInstance().getEmail());
+        reviewVO.setReviewDate(DateUtil.getCurrentDate());
+        reviewVO.setReviewPhotoURL(UserModel.objInstance().getPhotoURL());
+        reviewVO.setReviewReview(etPostReview.getText().toString());
+
+        ShopVO shopVO = ShopModel.getobjInstance().getShopVO();
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child(Constants.DETAIL).child(shopVO.getShopID()).child(Constants.REVIEW).push().setValue(reviewVO);
     }
 }

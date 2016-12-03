@@ -81,6 +81,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nyi.yumenubook.activities.ShopDetailActivity" />
         </activity>
+        <activity
+            android:name=".activities.LogInActivity"
+            android:label="@string/title_activity_log_in"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

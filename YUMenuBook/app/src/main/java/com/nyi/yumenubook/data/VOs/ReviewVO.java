@@ -6,6 +6,7 @@ package com.nyi.yumenubook.data.VOs;
 
 public class ReviewVO {
     private String reviewName;
+    private String reviewEmail;
     private String reviewDate;
     private String reviewReview;
 
@@ -14,8 +15,9 @@ public class ReviewVO {
     public ReviewVO() {
     }
 
-    public ReviewVO(String reviewName, String reviewDate, String reviewReview, String reviewPhotoURL) {
+    public ReviewVO(String reviewName, String reviewDate, String reviewEmail, String reviewReview, String reviewPhotoURL) {
         this.reviewName = reviewName;
+        this.reviewEmail = reviewEmail;
         this.reviewDate = reviewDate;
         this.reviewReview = reviewReview;
         this.reviewPhotoURL = reviewPhotoURL;
@@ -35,5 +37,29 @@ public class ReviewVO {
 
     public String getReviewPhotoURL() {
         return reviewPhotoURL;
+    }
+
+    public String getReviewEmail() {
+        return reviewEmail;
+    }
+
+    public void setReviewName(String reviewName) {
+        this.reviewName = reviewName;
+    }
+
+    public void setReviewDate(String reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
+    public void setReviewReview(String reviewReview) {
+        this.reviewReview = reviewReview;
+    }
+
+    public void setReviewPhotoURL(String reviewPhotoURL) {
+        this.reviewPhotoURL = reviewPhotoURL;
+    }
+
+    public void setReviewEmail(String reviewEmail) {
+        this.reviewEmail = reviewEmail;
     }
 }

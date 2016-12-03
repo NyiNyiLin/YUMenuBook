@@ -42,6 +42,7 @@ public class LogInFragment extends Fragment {
 
     private FirebaseAuth mAuth;
     private CallbackManager callbackManager;
+    private LoginController mLoginController;
 
     @BindView(R.id.login_button)
     LoginButton loginButton;
@@ -51,6 +52,11 @@ public class LogInFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mLoginController = (LoginController) context;
+    }
 
     public static LogInFragment newInstance() {
         LogInFragment fragment = new LogInFragment();
@@ -89,7 +95,6 @@ public class LogInFragment extends Fragment {
             public void onSuccess(LoginResult loginResult) {
                 // App code
                 Log.d(Constants.TAG, "log in button callback register callback" + loginResult.getAccessToken().toString());
-                //When Log in is successfull by facebook, return log in result to main activity and do firebase auth
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
@@ -131,10 +136,14 @@ public class LogInFragment extends Fragment {
                             Log.w(Constants.TAG, "signInWithCredential", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                        }else{
+                            mLoginController.onSuccessfulLogIn();
                         }
-
-                        // ...
                     }
                 });
+    }
+
+    public interface LoginController{
+        void onSuccessfulLogIn();
     }
 }

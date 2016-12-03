@@ -45,7 +45,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
     }
 
     public void addNewReview(ReviewVO reviewVO){
-        reviewVOList.add(reviewVO);
-        notifyItemInserted(reviewVOList.size());
+        reviewVOList.add(0, reviewVO);
+        notifyItemInserted(0);
     }
 }

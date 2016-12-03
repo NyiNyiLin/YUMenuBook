@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.ReviewVO;
+import com.nyi.yumenubook.utils.DateUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

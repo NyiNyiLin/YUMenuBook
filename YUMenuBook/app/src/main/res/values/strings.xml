@@ -30,5 +30,6 @@
 
     <string name="fb_login_protocol_scheme">fb1236572546366312</string>
     <string name="title_activity_review">ReviewActivity</string>
+    <string name="title_activity_log_in">LogInActivity</string>
 
 </resources>
