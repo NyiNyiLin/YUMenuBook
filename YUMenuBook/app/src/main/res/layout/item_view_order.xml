@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/card_background_color"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation"
+    android:layout_marginLeft="@dimen/margin_large"
+    android:layout_marginRight="@dimen/margin_large"
+    android:layout_marginBottom="@dimen/margin_medium_3"
+    android:layout_marginTop="@dimen/margin_small">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_medium">
+
+        <RelativeLayout
+            android:id="@+id/rl_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_item_order_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/text_regular_3x"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/tv_item_order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="order id"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/text_regular"/>
+
+        <TextView
+            android:id="@+id/tv_item_order_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="order id"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/text_regular"
+            android:layout_below="@id/tv_item_order_id"/>
+        </RelativeLayout>
+
+      <!--  <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_item_review_order_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginRight="@dimen/margin_small"/>-->
+
+        <View
+            android:id="@+id/v_item_order_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/rl_top"
+            android:background="@color/color_icon"
+            android:layout_marginBottom="@dimen/margin_medium"/>
+
+        <TextView
+            android:id="@+id/tv_item_order_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/v_item_order_line"
+            android:text="Delivery Time : "
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/text_regular"
+            />
+
+        <TextView
+            android:id="@+id/tv_item_order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/v_item_order_line"
+            android:text="1:00 pm"
+            android:textColor="@color/color_text"
+            android:textSize="@dimen/text_regular"
+            android:layout_toRightOf="@id/tv_item_order_time_text"/>
+
+        <Button
+            android:id="@+id/btn_item_order"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="1500 KS"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_regular_2x"
+            android:paddingLeft="@dimen/margin_medium"
+            android:paddingRight="@dimen/margin_medium"
+            android:layout_below="@id/v_item_order_line"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_shape_order_total"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

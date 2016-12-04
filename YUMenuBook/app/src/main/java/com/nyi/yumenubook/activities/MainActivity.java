@@ -29,6 +29,7 @@ import com.nyi.yumenubook.data.models.ShopModel;
 import com.nyi.yumenubook.data.models.UserModel;
 import com.nyi.yumenubook.fragments.HomeFragment;
 import com.nyi.yumenubook.fragments.LogInFragment;
+import com.nyi.yumenubook.fragments.OrdersFragment;
 import com.nyi.yumenubook.fragments.ProfileFragment;
 import com.nyi.yumenubook.utils.Constants;
 import com.nyi.yumenubook.views.holders.ShopViewHolder;
@@ -128,6 +129,12 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
             @Override
             public void onClick(View view) {
                 leftMenuHomeClick();
+            }
+        });
+        rlLefMenuOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                leftMenuOrdersClick();
             }
         });
         rlLefMenuProfile.setOnClickListener(new View.OnClickListener() {
@@ -271,6 +278,17 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
         isProfileClick = true;
         closeLeftMenu();
         logInFragmentControl(firebaseUser);
+    }
+
+    private void leftMenuOrdersClick(){
+        rlLefMenuHome.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuInfo.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+        rlLefMenuOrder.setBackgroundColor(Color.parseColor(LEFT_BG_SELECTED_COLOR));
+        rlLefMenuProfile.setBackgroundColor(Color.parseColor(LEFT_BG_COLOR));
+
+        isProfileClick = false;
+        closeLeftMenu();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, OrdersFragment.newInstance()).commit();
     }
 
     private void leftMenuInfoClick(){

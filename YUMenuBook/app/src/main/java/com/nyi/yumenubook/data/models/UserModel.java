@@ -3,6 +3,7 @@ package com.nyi.yumenubook.data.models;
 import com.google.firebase.auth.FirebaseUser;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.UserVO;
+import com.nyi.yumenubook.utils.RealmUtil;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
@@ -22,7 +23,7 @@ public class UserModel {
     private boolean isSignIn;
 
     private UserModel(){
-        realm = Realm.getDefaultInstance();
+        realm = RealmUtil.objInstance().getRealm();
         userVO = new UserVO();
         getUserFromRealmDatabase();
     }

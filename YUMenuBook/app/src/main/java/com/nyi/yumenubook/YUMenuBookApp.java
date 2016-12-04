@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.graphics.Typeface;
 
 import com.facebook.FacebookSdk;
+import com.nyi.yumenubook.utils.RealmUtil;
 
 import io.realm.Realm;
 
@@ -23,7 +24,7 @@ public class YUMenuBookApp extends Application{
         super.onCreate();
         context = getApplicationContext();
         FacebookSdk.sdkInitialize(getApplicationContext());
-        Realm.init(getApplicationContext());
+        RealmUtil.objInstance();
 
         AssetManager am = context.getApplicationContext().getAssets();
 
