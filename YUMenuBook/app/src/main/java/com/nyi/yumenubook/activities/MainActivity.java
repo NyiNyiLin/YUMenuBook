@@ -36,7 +36,7 @@ import com.nyi.yumenubook.views.holders.ShopViewHolder;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements ShopViewHolder.ControllerShopItem{
+public class MainActivity extends AppCompatActivity implements ShopViewHolder.ControllerShopItem, LogInFragment.LoginController{
 
     /*@BindView(R.id.toolbar)
     Toolbar toolbar;*/
@@ -297,5 +297,11 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
             if(isProfileClick) getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, LogInFragment.newInstance()).commit();
 
         }
+    }
+
+    @Override
+    public void onSuccessfulLogIn() {
+        Log.d(Constants.TAG, "MainActivity onSuccessful Login");
+        if(isProfileClick) getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, ProfileFragment.newInstance()).commit();
     }
 }

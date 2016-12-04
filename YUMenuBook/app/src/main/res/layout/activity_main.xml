@@ -12,7 +12,7 @@
         android:id="@+id/cv_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="@color/grey_white"
+        app:cardBackgroundColor="@color/card_background_color"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/card_elevation">
 

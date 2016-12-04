@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment {
         ChildEventListener childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d("YU", "onChildAdded:" + dataSnapshot.getKey());
+                Log.d(Constants.TAG, "Home Fragment onChildAdded:" + dataSnapshot.getKey());
 
                 ShopVO shopVO = dataSnapshot.getValue(ShopVO.class);
 
@@ -109,19 +109,19 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+                Log.d(Constants.TAG, "Home Fragment onChildChanged:" + dataSnapshot.getKey());
 
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
+                Log.d(Constants.TAG, "Home Fragment onChildRemoved:" + dataSnapshot.getKey());
 
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
-                Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
+                Log.d(Constants.TAG, "Home Fragment onChildMoved:" + dataSnapshot.getKey());
 
             }
 
