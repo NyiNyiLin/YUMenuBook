@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.MenuItemVO;
+import com.nyi.yumenubook.data.VOs.OrderItemVO;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,11 +24,14 @@ public class CartMenuItemViewHolder extends RecyclerView.ViewHolder implements V
     @BindView(R.id.tv_item_cart_menu_price)
     TextView tvItemMenuPrice;
 
+    @BindView(R.id.tv_item_cart_menu_quantity)
+    TextView tvItemMenuQuantity;
+
     @BindView(R.id.tv_item_cart_menu_delete)
     ImageView tvItemMenuAdd;
 
     private ControllerCartMenuItem mControllerCartMenuItem;
-    private MenuItemVO menuItemVO;
+    private OrderItemVO orderItemVO;
     private int posistion;
 
     public CartMenuItemViewHolder(View itemView, ControllerCartMenuItem controllerCartMenuItem) {
@@ -37,23 +41,25 @@ public class CartMenuItemViewHolder extends RecyclerView.ViewHolder implements V
         ButterKnife.bind(this, itemView);
         tvItemMenuName.setTypeface(YUMenuBookApp.getTextTypeface());
         tvItemMenuPrice.setTypeface(YUMenuBookApp.getTextTypeface());
+        tvItemMenuQuantity.setTypeface(YUMenuBookApp.getTextTypeface());
         tvItemMenuAdd.setOnClickListener(this);
 
     }
 
-    public void bindMenu(MenuItemVO menuItemVO, int position){
-        this.menuItemVO = menuItemVO;
+    public void bindMenu(OrderItemVO orderItemVO, int position){
+        this.orderItemVO = orderItemVO;
         this.posistion = position;
-        tvItemMenuName.setText(menuItemVO.getName());
-        tvItemMenuPrice.setText(menuItemVO.getPrice() + "");
+        tvItemMenuName.setText(orderItemVO.getName() + "  x " + orderItemVO.getQuantity());
+        tvItemMenuPrice.setText(orderItemVO.getPrice() + "");
+        //tvItemMenuQuantity.setText("x " + orderItemVO.getQuantity());
     }
 
     @Override
     public void onClick(View view) {
-        mControllerCartMenuItem.onTapMenuItem(menuItemVO, posistion);
+        mControllerCartMenuItem.onTapMenuItem(orderItemVO, posistion);
     }
 
     public interface ControllerCartMenuItem {
-        void onTapMenuItem(MenuItemVO menuItemVO, int position);
+        void onTapMenuItem(OrderItemVO orderItemVO, int position);
     }
 }

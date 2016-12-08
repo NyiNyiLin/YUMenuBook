@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.MenuItemVO;
+import com.nyi.yumenubook.data.VOs.OrderItemVO;
 import com.nyi.yumenubook.views.holders.CartMenuItemViewHolder;
 
 import java.util.List;
@@ -18,10 +19,10 @@ import java.util.List;
 
 public class MenuCartItemAdapter extends RecyclerView.Adapter<CartMenuItemViewHolder> {
     private LayoutInflater inflater;
-    private List<MenuItemVO> mMenuItemVOList;
+    private List<OrderItemVO> mMenuItemVOList;
     private CartMenuItemViewHolder.ControllerCartMenuItem controllerCartMenuItem;
 
-    public MenuCartItemAdapter(List<MenuItemVO> menuItemVOList, CartMenuItemViewHolder.ControllerCartMenuItem controllerCartMenuItem) {
+    public MenuCartItemAdapter(List<OrderItemVO> menuItemVOList, CartMenuItemViewHolder.ControllerCartMenuItem controllerCartMenuItem) {
         this.mMenuItemVOList = menuItemVOList;
         this.controllerCartMenuItem = controllerCartMenuItem;
         inflater = LayoutInflater.from(YUMenuBookApp.getContext());
@@ -46,8 +47,8 @@ public class MenuCartItemAdapter extends RecyclerView.Adapter<CartMenuItemViewHo
         return mMenuItemVOList.size();
     }
 
-    public void addNewMenu(MenuItemVO menuItemVO){
-        mMenuItemVOList.add(menuItemVO);
+    public void addNewMenu(OrderItemVO orderItemVO){
+        mMenuItemVOList.add(orderItemVO);
         notifyDataSetChanged();
 
     }

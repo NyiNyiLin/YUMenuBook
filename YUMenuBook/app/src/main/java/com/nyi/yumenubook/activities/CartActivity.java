@@ -15,6 +15,7 @@ import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuCartItemAdapter;
 import com.nyi.yumenubook.data.VOs.MenuItemVO;
+import com.nyi.yumenubook.data.VOs.OrderItemVO;
 import com.nyi.yumenubook.data.VOs.ShopVO;
 import com.nyi.yumenubook.data.models.MenuModel;
 import com.nyi.yumenubook.data.models.ShopModel;
@@ -41,14 +42,13 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
     ImageView ivCartOrder;
 
     private MenuCartItemAdapter menuItemAdapter;
-    private List<MenuItemVO> mMenuItemVOList;
+    private List<OrderItemVO> mMenuItemVOList;
     private int total;
 
     public static Intent newIntent(){
         Intent intent = new Intent(YUMenuBookApp.getContext(), CartActivity.class);
         return  intent;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +68,8 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
 
         Log.d(Constants.TAG, "Cart Item Count " + mMenuItemVOList.size());
 
-        for(MenuItemVO menuItemVO : mMenuItemVOList){
-            total = total + menuItemVO.getPrice();
+        for(OrderItemVO orderItemVO : mMenuItemVOList){
+            total = total + orderItemVO.getPrice();
         }
         tvCartTotalPrice.setText(total + " KS");
         menuItemAdapter = new MenuCartItemAdapter(mMenuItemVOList, this);
@@ -85,10 +85,10 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
     }
 
     @Override
-    public void onTapMenuItem(MenuItemVO menuItemVO, int position) {
-        Toast.makeText(YUMenuBookApp.getContext(), menuItemVO.getName() + " is removed from your Cart", Toast.LENGTH_SHORT).show();
+    public void onTapMenuItem(OrderItemVO orderItemVO, int position) {
+        Toast.makeText(YUMenuBookApp.getContext(), orderItemVO.getName() + " is removed from your Cart", Toast.LENGTH_SHORT).show();
         //mMenuItemVOList.remove(position);
-        total = total - menuItemVO.getPrice();
+        total = total - orderItemVO.getPrice();
         tvCartTotalPrice.setText(total + " KS");
         menuItemAdapter.removeMenu(position);
     }
