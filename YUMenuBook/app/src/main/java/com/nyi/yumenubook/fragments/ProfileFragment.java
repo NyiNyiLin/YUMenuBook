@@ -161,8 +161,6 @@ public class ProfileFragment extends Fragment {
         dialog.show(getChildFragmentManager(), "Update");
     }
 
-
-
     private void displayUser(){
         if(firebaseUser != null){
             tvProfileName.setText(firebaseUser.getDisplayName());
@@ -179,5 +177,4 @@ public class ProfileFragment extends Fragment {
         tvProfileMajor.setText(UserModel.objInstance().getMajor());
         tvProfileAge.setText(UserModel.objInstance().getAge() + "");
     }
-
 }
