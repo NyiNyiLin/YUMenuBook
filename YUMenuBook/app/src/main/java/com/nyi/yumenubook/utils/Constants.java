@@ -18,6 +18,8 @@ public class Constants {
     public static final String SHOP = "Shop";
     public static final String MENUITEM = "MenuItem";
     public static final String REVIEW = "Review";
+    public static final String ORDER = "Order";
+    public static final String ORDER_ITEM = "Item";
 
     public static final String DUMMY_LINK = "Dummy Link";
 }

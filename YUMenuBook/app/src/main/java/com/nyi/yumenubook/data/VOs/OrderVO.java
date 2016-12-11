@@ -25,6 +25,15 @@ public class OrderVO extends RealmObject{
         this.time = time;
     }
 
+    public OrderVO(String userName, String userPhone, String orderID, String shopName, String date, String time) {
+        this.userName = userName;
+        this.userPhone = userPhone;
+        this.orderID = orderID;
+        this.shopName = shopName;
+        this.date = date;
+        this.time = time;
+    }
+
     public String getShopName() {
         return shopName;
     }
@@ -48,4 +57,30 @@ public class OrderVO extends RealmObject{
     public String getUserPhone() {
         return userPhone;
     }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+
 }
