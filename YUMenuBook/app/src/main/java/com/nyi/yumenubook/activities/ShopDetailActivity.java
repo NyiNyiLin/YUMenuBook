@@ -70,6 +70,8 @@ public class ShopDetailActivity extends AppCompatActivity{
         }
         pagerItem.setAdapter(menuFragmentPagerAdapter);
         tabType.setupWithViewPager(pagerItem);
+        tabType.setTabMode(TabLayout.MODE_SCROLLABLE);
+        if(shopTypeList.size() <= 3) tabType.setTabMode(TabLayout.MODE_FIXED);
 
         Log.d(Constants.TAG, menuFragmentPagerAdapter.getCount() + "");
 

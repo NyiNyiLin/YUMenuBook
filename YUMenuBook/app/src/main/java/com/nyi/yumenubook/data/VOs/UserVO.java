@@ -7,7 +7,7 @@ import io.realm.RealmObject;
  */
 
 public class UserVO extends RealmObject{
-    private String phone;
+    private String phone = "";
     private String major;
     private int age;
 

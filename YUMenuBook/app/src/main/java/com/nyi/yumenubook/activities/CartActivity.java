@@ -128,7 +128,11 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
     public void onClick(View view) {
         Log.d(Constants.TAG, "CartActivity Cart Order Click");
 
-        if(!UserModel.objInstance().isSignIn()){
+        if(mMenuItemVOList.size() == 0){
+            AlertDialog alertDialog = DialogUtil.createAlertDialoge(this, "There is no item selected.", "", "OK");
+            alertDialog.show();
+        }
+        else if(!UserModel.objInstance().isSignIn()){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("You need to sign in to order")
                     .setTitle("Warning")
@@ -215,7 +219,8 @@ public class CartActivity extends AppCompatActivity implements CartMenuItemViewH
     public void onMessageEvent(DataEvent.ChangeUserInfo event) {
         if(event.getTitle().equals(PHONE_TEXT)){
             UserModel.objInstance().setUserPhone(event.getValue());
-            showLastWarning();
+            //showLastWarning();
+            showTimePicker();
         }
     }
 

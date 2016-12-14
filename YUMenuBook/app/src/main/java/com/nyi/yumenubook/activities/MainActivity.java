@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.Transaction;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.ShopVO;
@@ -161,6 +163,11 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
             }
         };
 
+        rlLefMenuHome.setClickable(false);
+        rlLefMenuInfo.setClickable(false);
+        rlLefMenuOrder.setClickable(false);
+        rlLefMenuProfile.setClickable(false);
+
     }
 
     @Override
@@ -245,6 +252,11 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
             //leftMenu.startAnimation(animSlideRight);
             viewMain.setVisibility(View.VISIBLE);
             leftMenuOpen = true;
+
+            rlLefMenuHome.setClickable(true);
+            rlLefMenuInfo.setClickable(true);
+            rlLefMenuOrder.setClickable(true);
+            rlLefMenuProfile.setClickable(true);
         }
     }
 
@@ -256,6 +268,23 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
             ///leftMenu.startAnimation(animSlideLeft);
             viewMain.setVisibility(View.GONE);
             leftMenuOpen = false;
+
+
+            /*Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    rlLefMenuHome.setVisibility(View.INVISIBLE);
+                    rlLefMenuInfo.setVisibility(View.INVISIBLE);
+                    rlLefMenuOrder.setVisibility(View.INVISIBLE);
+                    rlLefMenuProfile.setVisibility(View.INVISIBLE);
+                }
+            }, 3000);*/
+
+            rlLefMenuHome.setClickable(false);
+            rlLefMenuInfo.setClickable(false);
+            rlLefMenuOrder.setClickable(false);
+            rlLefMenuProfile.setClickable(false);
         }
     }
 
