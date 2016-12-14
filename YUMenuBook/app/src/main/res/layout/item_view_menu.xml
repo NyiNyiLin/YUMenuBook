@@ -5,7 +5,8 @@
     android:orientation="horizontal"
     android:paddingLeft="@dimen/margin_large"
     android:paddingTop="@dimen/margin_medium"
-    android:paddingBottom="@dimen/margin_medium">
+    android:paddingBottom="@dimen/margin_medium"
+    android:foreground="?android:attr/selectableItemBackground">
 
 
     <TextView

@@ -1,6 +1,7 @@
 package com.nyi.yumenubook.fragments;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import com.nyi.yumenubook.data.VOs.MenuItemVO;
 import com.nyi.yumenubook.data.models.MenuModel;
 import com.nyi.yumenubook.events.DataEvent;
 import com.nyi.yumenubook.utils.Constants;
+import com.nyi.yumenubook.utils.DialogUtil;
 import com.nyi.yumenubook.utils.FirebaseUtil;
 import com.nyi.yumenubook.views.holders.MenuItemViewHolder;
 
@@ -52,6 +54,7 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
 
     private List<MenuItemVO> mMenuItemVOList;
     private MenuItemAdapter menuItemAdapter;
+    private ProgressDialog progressDialog;
 
     public MenuItemFragment() {
         // Required empty public constructor
@@ -86,6 +89,9 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
         View view = inflater.inflate(R.layout.fragment_menu_item, container, false);
         ButterKnife.bind(this, view);
 
+        progressDialog = DialogUtil.createProgressDialoge(getContext(), "Getting data...");
+        progressDialog.show();
+
         menuItemAdapter = new MenuItemAdapter(mMenuItemVOList, this);
         rvMenuItem.setAdapter(menuItemAdapter);
 
@@ -99,7 +105,7 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
 
     @Override
     public void onTapMenuItem(MenuItemVO menuItemVO) {
-        Log.d("YU", menuItemVO.getName());
+        Log.d(Constants.TAG, menuItemVO.getName());
         broadcasMenuItemToCartWithEventBus(menuItemVO);
 
         Toast.makeText(YUMenuBookApp.getContext(), menuItemVO.getName() + " is added to your Cart", Toast.LENGTH_SHORT).show();
@@ -117,6 +123,8 @@ public class MenuItemFragment extends Fragment implements MenuItemViewHolder.Con
                 MenuItemVO menuItemVO = dataSnapshot.getValue(MenuItemVO.class);
                 menuItemVO.setMenuItemID(dataSnapshot.getKey());
                 menuItemAdapter.addNewMenu(menuItemVO);
+
+                if(progressDialog.isShowing()) progressDialog.dismiss();
             }
 
             @Override

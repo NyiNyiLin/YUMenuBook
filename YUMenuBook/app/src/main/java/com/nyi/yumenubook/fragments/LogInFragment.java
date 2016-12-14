@@ -1,5 +1,6 @@
 package com.nyi.yumenubook.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -30,6 +31,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.utils.Constants;
+import com.nyi.yumenubook.utils.DialogUtil;
 
 import java.util.Arrays;
 
@@ -47,6 +49,8 @@ public class LogInFragment extends Fragment {
     @BindView(R.id.login_button)
     LoginButton loginButton;
 
+
+    ProgressDialog progressDialog;
 
     public LogInFragment() {
         // Required empty public constructor
@@ -95,6 +99,9 @@ public class LogInFragment extends Fragment {
             public void onSuccess(LoginResult loginResult) {
                 // App code
                 Log.d(Constants.TAG, "log in button callback register callback" + loginResult.getAccessToken().toString());
+                progressDialog = DialogUtil.createProgressDialoge(getContext(), "Getting information from facebook...");
+                progressDialog.show();
+
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
 
@@ -137,6 +144,7 @@ public class LogInFragment extends Fragment {
                             Toast.makeText(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }else{
+                            if(progressDialog.isShowing()) progressDialog.dismiss();
                             mLoginController.onSuccessfulLogIn();
                         }
                     }

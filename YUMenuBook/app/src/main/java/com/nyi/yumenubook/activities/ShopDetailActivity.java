@@ -13,6 +13,7 @@ import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.MenuFragmentPagerAdapter;
 import com.nyi.yumenubook.data.VOs.ShopVO;
+import com.nyi.yumenubook.data.models.MenuModel;
 import com.nyi.yumenubook.data.models.ShopModel;
 import com.nyi.yumenubook.fragments.MenuItemFragment;
 import com.nyi.yumenubook.utils.Constants;
@@ -80,6 +81,7 @@ public class ShopDetailActivity extends AppCompatActivity{
     }
 
     public void back(View v){
+        MenuModel.getobjInstance().clearCartMenuItemList();
         this.finish();
     }
 
@@ -91,5 +93,11 @@ public class ShopDetailActivity extends AppCompatActivity{
     public void reviewClick(View view){
         Intent intent = ReviewActivity.newIntent();
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MenuModel.getobjInstance().clearCartMenuItemList();
     }
 }

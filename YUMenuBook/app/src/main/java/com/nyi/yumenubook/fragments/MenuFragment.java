@@ -48,8 +48,6 @@ public class MenuFragment extends Fragment {
 
     public static MenuFragment newInstance() {
         MenuFragment fragment = new MenuFragment();
-        Bundle args = new Bundle();
-
         return fragment;
     }
 

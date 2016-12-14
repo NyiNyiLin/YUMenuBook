@@ -2,8 +2,10 @@ package com.nyi.yumenubook.views.holders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nyi.yumenubook.R;
 import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.data.VOs.ShopVO;
@@ -26,6 +28,9 @@ public class ShopViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     @BindView(R.id.tv_shop_rating)
     TextView tvSHopRating;
 
+    @BindView(R.id.iv_shop_image)
+    ImageView ivShopImage;
+
     private ControllerShopItem mControllerShopItem;
     private ShopVO mShopVO;
 
@@ -46,6 +51,13 @@ public class ShopViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         this.mShopVO = shopVO;
         tvShopName.setText(shopVO.getName());
         tvShopPlace.setText(shopVO.getPlace());
+
+        Glide.with(YUMenuBookApp.getContext())
+                .load(shopVO.getImageLink())
+                .asBitmap().centerCrop()
+                .placeholder(R.drawable.ic_bg_30)
+                .error(R.drawable.ic_bg_30)
+                .into(ivShopImage);
     }
 
     @Override

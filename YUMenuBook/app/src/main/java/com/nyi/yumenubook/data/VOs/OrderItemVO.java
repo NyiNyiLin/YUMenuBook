@@ -1,14 +1,21 @@
 package com.nyi.yumenubook.data.VOs;
 
+import io.realm.RealmObject;
+
 /**
  * Created by IN-3442 on 08-Dec-16.
  */
 
-public class OrderItemVO {
+public class OrderItemVO extends RealmObject{
+    public static String PARAM_ID = "ID";
+
     private String ID;
     private String name;
     private int price;
     private int quantity;
+
+    public OrderItemVO() {
+    }
 
     public OrderItemVO(String ID, String name, int quantity, int price) {
         this.ID = ID;

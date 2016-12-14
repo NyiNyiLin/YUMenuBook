@@ -35,7 +35,7 @@ public class MenuItemViewHolder extends RecyclerView.ViewHolder implements View.
         this.mControllerMenuItem = controllerMenuItem;
 
         ButterKnife.bind(this, itemView);
-        tvItemMenuName.setTypeface(YUMenuBookApp.getTextTypeface());
+        //tvItemMenuName.setTypeface(YUMenuBookApp.getTextTypeface());
         tvItemMenuPrice.setTypeface(YUMenuBookApp.getTextTypeface());
 
         ivItemMenuAdd.setOnClickListener(this);

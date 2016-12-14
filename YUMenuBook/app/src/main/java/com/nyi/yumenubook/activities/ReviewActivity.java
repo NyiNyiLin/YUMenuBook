@@ -44,8 +44,12 @@ public class ReviewActivity extends AppCompatActivity {
     @BindView(R.id.rv_review_item)
     RecyclerView rvReviewItem;
 
+    @BindView(R.id.tv_review_rate_count)
+    TextView tvReviewReviewCount;
+
     private ReviewAdapter reviewAdapter;
     private List<ReviewVO> mReviewVOList = new ArrayList<>();
+    private int reviewCount = 0;
 
 
     public static Intent newIntent(){
@@ -84,6 +88,9 @@ public class ReviewActivity extends AppCompatActivity {
                 ReviewVO reviewVO = dataSnapshot.getValue(ReviewVO.class);
 
                 reviewAdapter.addNewReview(reviewVO);
+
+                reviewCount++;
+                tvReviewReviewCount.setText(reviewCount + "");
             }
 
             @Override

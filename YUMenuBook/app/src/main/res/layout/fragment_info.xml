@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Version 1.0"
+        android:textColor="@color/color_text"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/margin_medium"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Developed by Number 9"
+        android:textColor="@color/color_text"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/margin_medium"/>
+
+    <Button
+        android:id="@+id/btn_info_open_source"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Open Source License"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_shape_tab"
+        android:layout_marginTop="@dimen/margin_large"/>
+
+    <Button
+        android:id="@+id/btn_info_feedback"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Feedback"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_shape_tab"
+        android:layout_marginTop="@dimen/margin_large"/>
+
+</LinearLayout>

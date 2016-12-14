@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="order id"
+            android:text=""
             android:textColor="@color/color_text"
             android:textSize="@dimen/text_regular"/>
 
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="order id"
+            android:text="order_date"
             android:textColor="@color/color_text"
             android:textSize="@dimen/text_regular"
             android:layout_below="@id/tv_item_order_id"/>

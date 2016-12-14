@@ -61,4 +61,8 @@ public class MenuModel{
         return mOrderItemVIList;
     }
 
+    public void clearCartMenuItemList(){
+        mOrderItemVIList.clear();
+    }
+
 }

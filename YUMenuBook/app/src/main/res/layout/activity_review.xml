@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bgColor">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -32,25 +33,28 @@
                     android:src="@drawable/ic_navigate_before_black_24dp" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginRight="@dimen/margin_medium_2"
-                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:onClick="writeReviewClick"
-                    android:src="@drawable/ic_rate_review_black_24dp" />
+                    android:src="@drawable/ic_review"/>
 
                 <TextView
                     android:id="@+id/tv_review_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:gravity="center"
                     android:text="Review"
                     android:textAllCaps="true"
                     android:textColor="@color/color_text"
                     android:textSize="@dimen/text_regular_3x"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
 
             </RelativeLayout>
 
@@ -152,6 +156,7 @@
 
 
             </android.support.v7.widget.CardView>
+
 
         </LinearLayout>
 

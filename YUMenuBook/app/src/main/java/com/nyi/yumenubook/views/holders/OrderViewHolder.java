@@ -11,12 +11,16 @@ import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.OrderItemAdapter;
 import com.nyi.yumenubook.data.VOs.OrderItemVO;
 import com.nyi.yumenubook.data.VOs.OrderVO;
+import com.nyi.yumenubook.utils.RealmUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created by IN-3442 on 04-Dec-16.
@@ -63,12 +67,25 @@ public class OrderViewHolder extends RecyclerView.ViewHolder{
 
     public void bindData(OrderVO orderVO){
         tvShopName.setText(orderVO.getShopName());
-        tvOrderId.setText(orderVO.getOrderID());
+        //tvOrderId.setText(orderVO.getOrderID());
         tvDate.setText(orderVO.getDate());
         tvOrderTime.setText(orderVO.getTime());
+        btnOrder.setText(orderVO.getTotal() + " KS");
 
-        dummyDat();
+        //dummyDat();
+        getOrderMenuItemFromRealm(orderVO.getOrderID());
         mOrderItemAdapter.setOrderItemVOList(mOrderItemVOList);
+    }
+
+    private void getOrderMenuItemFromRealm(String id){
+        Realm realm = RealmUtil.objInstance().getRealm();
+        RealmQuery<OrderItemVO> realmQuery = realm.where(OrderItemVO.class);
+
+        RealmResults<OrderItemVO> realmResults = realmQuery.equalTo(OrderItemVO.PARAM_ID, id).findAll();
+
+        for(OrderItemVO orderItemVO : realmResults){
+            mOrderItemVOList.add(orderItemVO);
+        }
     }
 
     private void dummyDat(){

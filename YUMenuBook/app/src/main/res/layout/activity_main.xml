@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/ic_bg">
+            android:background="@drawable/ic_bg_10">
 
             <RelativeLayout
                 android:id="@+id/rl_title"
@@ -35,7 +35,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:paddingLeft="16dp"
-                    android:src="@drawable/ic_left_menu_24dp" />
+                    android:src="@drawable/ic_drawer" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -137,8 +137,8 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_chat_black_24dp" />
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_order" />
 
                 <TextView
                     android:layout_width="match_parent"

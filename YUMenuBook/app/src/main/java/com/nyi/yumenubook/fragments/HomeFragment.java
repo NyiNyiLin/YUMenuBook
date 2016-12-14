@@ -1,9 +1,11 @@
 package com.nyi.yumenubook.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,6 +25,7 @@ import com.nyi.yumenubook.YUMenuBookApp;
 import com.nyi.yumenubook.adapters.ShopAdapter;
 import com.nyi.yumenubook.data.VOs.ShopVO;
 import com.nyi.yumenubook.utils.Constants;
+import com.nyi.yumenubook.utils.DialogUtil;
 import com.nyi.yumenubook.utils.FirebaseUtil;
 import com.nyi.yumenubook.views.holders.ShopViewHolder;
 
@@ -46,6 +49,7 @@ public class HomeFragment extends Fragment {
     private ShopAdapter shopAdapter;
 
     private ShopViewHolder.ControllerShopItem mControllerShopItem;
+    private ProgressDialog progressDialog;
 
     public static Fragment newInstance(){
         HomeFragment fragment = new HomeFragment();
@@ -76,6 +80,9 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
 
+        progressDialog = DialogUtil.createProgressDialoge(getContext(), "Getting data...");
+        progressDialog.show();
+
         shopAdapter = new ShopAdapter(mShopList, mControllerShopItem);
         rvShop.setAdapter(shopAdapter);
 
@@ -105,6 +112,8 @@ public class HomeFragment extends Fragment {
                 ShopVO shopVO = dataSnapshot.getValue(ShopVO.class);
 
                 shopAdapter.addNewShop(shopVO);
+
+                if(progressDialog.isShowing()) progressDialog.dismiss();
             }
 
             @Override

@@ -30,7 +30,7 @@ public class OrderItemViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
         ButterKnife.bind(this, itemView);
 
-        tvName.setTypeface(YUMenuBookApp.getTextTypeface());
+        //tvName.setTypeface(YUMenuBookApp.getTextTypeface());
         tvPrice.setTypeface(YUMenuBookApp.getTextTypeface());
         tvQuantity.setTypeface(YUMenuBookApp.getTextTypeface());
     }

@@ -57,4 +57,9 @@ public class MenuCartItemAdapter extends RecyclerView.Adapter<CartMenuItemViewHo
         mMenuItemVOList.remove(position);
         notifyItemRemoved(position);
     }
+
+    public void deleteAllMenu(){
+        mMenuItemVOList.clear();
+        notifyDataSetChanged();
+    }
 }

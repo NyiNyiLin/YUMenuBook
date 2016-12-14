@@ -28,6 +28,7 @@ import com.nyi.yumenubook.data.VOs.ShopVO;
 import com.nyi.yumenubook.data.models.ShopModel;
 import com.nyi.yumenubook.data.models.UserModel;
 import com.nyi.yumenubook.fragments.HomeFragment;
+import com.nyi.yumenubook.fragments.InfoFragment;
 import com.nyi.yumenubook.fragments.LogInFragment;
 import com.nyi.yumenubook.fragments.OrdersFragment;
 import com.nyi.yumenubook.fragments.ProfileFragment;
@@ -299,6 +300,8 @@ public class MainActivity extends AppCompatActivity implements ShopViewHolder.Co
 
         isProfileClick = false;
         closeLeftMenu();
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, InfoFragment.newInstance()).commit();
+
     }
 
     private void logInFragmentControl(FirebaseUser firebaseUser){
